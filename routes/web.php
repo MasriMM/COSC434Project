@@ -18,3 +18,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//testing route to view navbar and footer
+Route::get('/nav', function () {
+    return view('layout');
+});
