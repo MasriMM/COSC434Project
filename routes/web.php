@@ -23,3 +23,8 @@ require __DIR__.'/auth.php';
 Route::get('/nav', function () {
     return view('layout');
 });
+
+//route for about us page
+Route::get('/aboutUs', function () {
+    return view('about-us');
+});
