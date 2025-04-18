@@ -55,3 +55,12 @@ Route::prefix('Admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('messages', [MessagesController::class, 'index'])->name('messages.index');
     Route::get('statistics', [StatisticsController::class, 'index'])->name('statistics.index');
 });
+
+Route::get('/supplements', [SupplementController::class, 'index'])->name('supplements.index');
+Route::get('/get-supplements', [SupplementController::class, 'getSupplements'])->name('supplements.get');
+Route::get('/checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
+Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+    
+Route::get('/supplements', function () {
+    return view('supplement'); 
+})->name('supplements');
