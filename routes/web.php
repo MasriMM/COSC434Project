@@ -31,9 +31,15 @@ Route::get('/nav', function () {
     return view('layout');
 });
 
-//route for about us page
-Route::get('/aboutUs', function () {
+//routes for home, about-us, contatc-us
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
+Route::get('/about', function () {
     return view('about-us');
+});
+Route::get('/contact', function () {
+    return view('contact-us');
 });
 
 //route for admin nav

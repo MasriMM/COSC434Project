@@ -39,7 +39,9 @@
                     <x-nav-link :href="route('admin.exercises.index')" :active="request()->routeIs('admin.exercises.*')">
                         {{ __('Exercises') }}
                     </x-nav-link>
-
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                 </div>
             </div>
 
