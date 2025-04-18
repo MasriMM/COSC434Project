@@ -20,10 +20,10 @@
 <!-- Guide -->
 <div class="relative isolate bg-zinc-950 px-4 py-10 sm:py-18 lg:px-8">
     <div class="absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl opacity-30">
-    <div class="w-full h-full bg-gradient-to-tr from-[#f98ab9] to-[#f04e4e]"
-        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-    </div>
-    </div>
+      <div class="w-full h-full bg-gradient-to-tr from-[#f98ab9] to-[#f04e4e]"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+      </div>
+  </div>
 
 
   <div class="mx-auto max-w-4xl text-center">
@@ -126,12 +126,15 @@
 </div>
 
 <!-- our team -->
-<div class="relative bg-zinc-950 py-20 px-6 overflow-hidden">
-  <div class="absolute inset-0 z-0 bg-gradient-to-br from-red-900/10 via-transparent to-zinc-950/40"></div>
-  <div class="absolute bottom-22 right-0 w-[300px] h-[300px] bg-red-700/20 blur-[120px] rounded-full z-0"></div>
-    <!-- your team section content -->
-    <div class="max-w-xl">
-            <h2 class="text-3xl font-semibold tracking-tight text-pretty text-zinc-50 sm:text-4xl"><span class="text-red-800">Meat</span> our team</h2>
+<div class="relative isolate bg-zinc-950 px-4 py-10 sm:py-18 lg:px-8">
+    <div class="absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl opacity-30">
+      <div class="w-full h-full bg-gradient-to-tr from-[#f98ab9] to-[#f04e4e]"
+          style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+      </div>
+  </div>
+
+  <div class="max-w-xl">
+            <h2 class="text-3xl font-semibold tracking-tight text-pretty text-zinc-50 sm:text-4xl"><span class="text-red-800">Meet</span> our team</h2>
             <p class="mt-6 text-lg/8 text-zinc-400">Meet the passionate fitness enthusiasts and tech experts behind FitForge, dedicated to helping you achieve your health and wellness goals!</p>
         </div>
     <ul role="list" class="grid gap-x-15 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
@@ -172,6 +175,5 @@
         </div>
       </li>
     </ul>
- 
 </div>
 @endsection

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'user']);
-            $table->enum('gender', ['male', 'female']);
-            $table->date('dob');
-            $table->float('height');
-            $table->float('weight');
+            $table->enum('role', ['admin', 'user'])->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->date('dob')->nullable();
+            $table->float('height')->nullable();
+            $table->float('weight')->nullable();
             $table->enum('goal', ['lose_weight', 'build_muscle', 'improve_flexibility'])->nullable();
             $table->rememberToken();
             $table->timestamps();
