@@ -17,20 +17,20 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Admin user
-        // User::create([
-        //     'name' => 'Admin User',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => Hash::make('admin123'), // secure hash
-        //     'role' => 'admin',
-        // ]);
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123'), // secure hash
+            'role' => 'admin',
+        ]);
 
         // Regular user
-        // User::create([
-        //     'name' => 'Normal User',
-        //     'email' => 'user@gmail.com',
-        //     'password' => Hash::make('user123'), // secure hash
-        //     'role' => 'user',
-        // ]);
+        User::create([
+            'name' => 'Normal User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('user123'), // secure hash
+            'role' => 'user',
+        ]);
 
         $faker = Faker::create();
 
