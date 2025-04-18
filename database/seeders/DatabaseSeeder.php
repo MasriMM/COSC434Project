@@ -25,6 +25,11 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             CategorySeeder::class,
             SupplementSeeder::class,
+            ProgramSeeder::class,
+            ExerciseSeeder::class,
+            ExerciseProgramSeeder::class,
+            MuscleGroupSeeder::class,
+            ExerciseMuscleGroupSeeder::class,
         ]);
     }
 }
