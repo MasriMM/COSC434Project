@@ -1,9 +1,8 @@
 @extends('layout')
 
-@section('title', 'Supplements')
+@section('title', 'Supplements') 
 
-@section('content')
-
+@section('content') 
 <!-- Swiper Container -->
 <div class="swiper-container w-full" style="height: calc(100vh - 120px);">
         <div class="swiper mySwiper w-full h-full">

@@ -1,65 +1,100 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Supplement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class SupplementsController extends Controller
+class SupplementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.supplements.index');
+        $query = Supplement::query();
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+        }
+
+        if ($sort = $request->input('sort')) {
+            $direction = $request->input('direction', 'asc');
+            $query->orderBy($sort, $direction);
+        } else {
+            $query->latest();
+        }
+
+        $supplements = $query->paginate(10);
+
+        return view('admin.supplements.index', compact('supplements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('admin.supplements.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'required|numeric|min:0',
+            'quantity'    => 'required|integer|min:0',
+            'image'       => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('supplements', 'public');
+        }
+
+        Supplement::create($validated);
+
+        return redirect()->route('supplements.index')->with('success', 'Supplement created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Supplement $supplement)
     {
-        //
+        return view('admin.supplements.show', compact('supplement'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Supplement $supplement)
     {
-        //
+        return view('admin.supplements.edit', compact('supplement'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Supplement $supplement)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'required|numeric|min:0',
+            'quantity'    => 'required|integer|min:0',
+            'image'       => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($supplement->image) {
+                Storage::disk('public')->delete($supplement->image);
+            }
+
+            $validated['image'] = $request->file('image')->store('supplements', 'public');
+        }
+
+        $supplement->update($validated);
+
+        return redirect()->route('supplements.index')->with('success', 'Supplement updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Supplement $supplement)
     {
-        //
+        if ($supplement->image) {
+            Storage::disk('public')->delete($supplement->image);
+        }
+
+        $supplement->delete();
+
+        return redirect()->route('supplements.index')->with('success', 'Supplement deleted successfully.');
     }
 }
