@@ -1,3 +1,3 @@
 <x-app-layout>
-    <h1>Suuplements</h1>
+    <h1>Statistics</h1>
 </x-app-layout>
