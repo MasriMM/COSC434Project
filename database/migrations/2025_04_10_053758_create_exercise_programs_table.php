@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('exercise_programs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
+            $table->foreignId('exercise_id')->constrained()->onDelete('cascade');
+            $table->integer('sets')->nullable();
+            $table->string('reps')->nullable();
             $table->timestamps();
         });
     }
