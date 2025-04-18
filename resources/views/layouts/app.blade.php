@@ -10,14 +10,12 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-200">
+        <div class="min-h-screen bg-zinc-100 dark:bg-zinc-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -31,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-            @yield('content')
+                {{ $slot }}
             </main>
         </div>
     </body>

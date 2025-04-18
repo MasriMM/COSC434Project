@@ -10,11 +10,12 @@ class MessagesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.messages.index');
+        $sortOrder = $request->input('sort', 'desc'); // default: newest
+        $messages = \App\Models\Message::orderBy('created_at', $sortOrder)->get();
+        return view('admin.messages.index', compact('messages', 'sortOrder'));
     }
-
     /**
      * Show the form for creating a new resource.
      */

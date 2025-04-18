@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProgramsController;
 use App\Http\Controllers\Admin\ExercisesController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\StatisticsController;
+use App\Http\Controllers\SupplementController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,16 +32,18 @@ Route::get('/nav', function () {
     return view('layout');
 });
 
-//routes for home, about-us, contatc-us
+//routes for home, about-us, contatc-us, shop
 Route::get('/home', function () {
     return view('home');
 })->name('home');
 Route::get('/about', function () {
     return view('about-us');
 });
-Route::get('/contact', function () {
+Route::get('/contact-us', function () {
     return view('contact-us');
 });
+Route::resource('supplements', SupplementController::class);
+
 
 //route for admin nav
 Route::prefix('Admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -61,6 +64,3 @@ Route::get('/get-supplements', [SupplementController::class, 'getSupplements'])-
 Route::get('/checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
     
-Route::get('/supplements', function () {
-    return view('supplement'); 
-})->name('supplements');

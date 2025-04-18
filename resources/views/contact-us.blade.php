@@ -1,13 +1,13 @@
 
-@extends('layouts.app')
+@extends('layout')
 
 @section('title', 'Contact Us')
 
 @section('content')
 <body>
     <link rel="stylesheet" href="contact.css">
-<div class="isolate bg-zinc-900 bg-custom px-6 py-24 sm:py-32 lg:px-8 text-white">   
-    <div class="form-container mx-auto mt-16 max-w-xl sm:mt-24">    
+<div class="isolate bg-zinc-900 bg-custom px-6 py-6 sm:py-32 lg:px-8 text-white">   
+    <div class="form-container mx-auto max-w-xl sm:mt-24">    
     <div class=" mx-auto max-w-2xl text-center">         
         <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Send us a message</h2>         
         <p class="mt-2 text-lg text-gray-300">We would love to hear from you!</p>     
@@ -83,7 +83,7 @@
 
 <div>
     <section class="py-2 bg-zinc-900 text-white">
-        <div class="container mx-auto px-6 lg:px-20">
+        <div class=" mx-auto px-6 lg:px-20 mt-3">
             <h2 class="text-3xl font-bold text-center mb-6 animate-fade-in">Our Contact Detail</h2>
             <p class="text-gray-300 text-center mb-10 animate-fade-in">Get in touch with us for inquiries, support, or collaboration.</p>
 
@@ -125,8 +125,8 @@
                 </div>
             </div>
 
-            <div class="mt-12 opacity-0 animate-fade-in-late">
-                <iframe class="w-full h-96 rounded-lg shadow-xl"
+            <div class=" opacity-0 animate-fade-in-late">
+                <iframe class="w-full h-auto rounded-lg shadow-xl"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.7562440302304!2d35.47450858275886!3d33.89593110415621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f172b23035589%3A0xb1a9cdc8d5568820!2sFitness%20Zone%20-%20Hamra!5e0!3m2!1sen!2sus!4v1742147455595!5m2!1sen!2sus" 
                     allowfullscreen="" loading="lazy">
                 </iframe>
@@ -136,7 +136,7 @@
 </div>
 
 
-<div class="bg-zinc-900 px-6 py-24 sm:py-32 lg:px-8 text-white" id="contact-section">
+<div class="bg-zinc-900 px-6 py-10 sm:py-32 lg:px-8 text-white" id="contact-section">
     <div class="mx-auto max-w-2xl text-left">
         <h2 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-white">Frequently Asked Questions</h2>
         <p class="mt-3 text-lg text-gray-300 text-center">Find answers to common questions below.</p>

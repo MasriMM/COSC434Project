@@ -35,9 +35,9 @@
           <div class="flex space-x-4">
             <a href="/home" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Home</a>
             <a href="/about" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">About Us</a>
-            <a href="/class-details" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Programs</a>
-            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Shop</a>
-            <a href="/contact" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Contact Us</a>
+            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Programs</a>
+            <a href="/supplements" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Shop</a>
+            <a href="/contact-us" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Contact Us</a>
             @auth
                 @if(auth()->user()->role === 'admin')
                     <a href="{{ route('admin.users.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">
@@ -72,8 +72,8 @@
       <a href="/home" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
       <a href="/about" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About Us</a>
       <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Programs</a>
-      <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Shop</a>
-      <a href="/contact" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</a>
+      <a href="/supplements" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Shop</a>
+      <a href="/contact-us" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact Us</a>
       @auth
           @if(auth()->user()->role === 'admin')
               <a href="{{ route('admin.users.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">
@@ -131,12 +131,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#faq" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
+                    <a href="/supplements" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
                         Shop
                     </a>
                 </li>
                 <li>
-                    <a href="/contact" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
+                    <a href="/contact-us" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
                         Contact Us
                     </a>
                 </li> 
