@@ -15,7 +15,8 @@
     <!-- User Info -->
     <div class="mb-4">
         <input type="text" id="firstName" placeholder="First Name" class="w-full px-4 py-2 mb-2 rounded bg-gray-700 text-white placeholder-gray-400">
-        <input type="text" id="lastName" placeholder="Last Name" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400">
+        <input type="text" id="lastName" placeholder="Last Name" class="w-full px-4 py-2 mb-2 rounded bg-gray-700 text-white placeholder-gray-400">
+        <input type="text" id="Location" placeholder="Location" class="w-full px-4 py-2 rounded bg-gray-700 text-white placeholder-gray-400">
     </div>
 
     <!-- Card Info -->

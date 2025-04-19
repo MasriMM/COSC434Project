@@ -8,7 +8,7 @@
             <h1 class="text-white text-[30px] mb-6">Order #{{ $order->id }} Details</h1>
 
             <div class="bg-zinc-900 shadow-sm rounded-lg p-6 mb-6 text-white space-y-2">
-                <p><strong class="text-lg">User ID:</strong> {{ $order->user_id }}</p>
+                <p><strong class="text-lg">User Name:</strong> {{ $order->user->name }}</p>
                 <p><strong class="text-lg">Total Price:</strong> ${{ number_format($order->total_price, 2) }}</p>
                 <p><strong class="text-lg">Status:</strong> {{ $order->status }}</p>
                 <p><strong class="text-lg">Created At:</strong> {{ $order->created_at->format('Y-m-d H:i:s') }}</p>

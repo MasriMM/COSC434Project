@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const firstName = document.getElementById("firstName").value.trim();
         const lastName = document.getElementById("lastName").value.trim();
+        const Location = document.getElementById("Location").value.trim();
         const cardNumber = document.getElementById("cardNumber").value.trim();
         const expiryDate = document.getElementById("expiryDate").value.trim();
         const cvv = document.getElementById("cvv").value.trim();
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cart,
                 firstName,
                 lastName,
+                Location,
                 cardNumber,
                 expiryDate,
                 cvv

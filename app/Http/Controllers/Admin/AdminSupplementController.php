@@ -39,6 +39,7 @@ class AdminSupplementController extends Controller
 
         return view('admin.supplements.index', compact('supplements'));
     }
+
     public function store(Request $request)
     {
         try {
@@ -46,20 +47,26 @@ class AdminSupplementController extends Controller
             $request->validate([
                 'name'        => 'required|string|max:255',
                 'price'       => 'required|numeric',
-                'quantity'    => 'required|integer',
                 'stock'       => 'required|integer',
+                'description' => 'nullable|string', // Added description validation
                 'category_id' => 'required|exists:categories,id',
                 'image'       => 'nullable|image|max:2048',
             ]);
-            
+
             \Log::info('Request data: ' . json_encode($request->all()));
-    
-            $data = $request->only(['name', 'price', 'quantity', 'category_id','stock']);
-    
+        
+            $data = $request->only(['name', 'price', 'category_id', 'stock', 'description']); // Include description in data
+
+            // Check if image is uploaded
+            if ($request->hasFile('image')) {
+                // Store the image in the public disk (public/supplements)
                 $imagePath = $request->file('image')->store('supplements', 'public');
-                $data['image'] = '/imgs/BCCA.png';
-            
-    
+                // Set the image path to be stored in the database
+                $data['image'] = '/storage/' . $imagePath;  // Correct path to access the public storage
+            } else {
+                $data['image'] = '/imgs/default.png';  // If no image is uploaded, use a default image
+            }
+
             if ($request->input('id')) {
                 // Update the existing supplement
                 $supplement = Supplement::find($request->input('id'));
@@ -72,44 +79,47 @@ class AdminSupplementController extends Controller
                 // Create a new supplement
                 Supplement::create($data);
             }
-            
+
             return response()->json(['success' => true]);
-    
+
         } catch (\Exception $e) {
             \Log::error('Error in store method: ' . $e->getMessage());
             return response()->json(['error' => 'An error occurred.'], 500);
         }
     }
+
     public function update(Request $request, $id)
-{
-    try {
-        $request->validate([
-            'name'        => 'required|string|max:255',
-            'price'       => 'required|numeric',
-            'quantity'    => 'required|integer',
-            'stock'       => 'required|integer',
-            'category_id' => 'required|exists:categories,id',
-            'image'       => 'nullable|image|max:2048',
-        ]);
+    {
+        try {
+            $request->validate([
+                'name'        => 'required|string|max:255',
+                'price'       => 'required|numeric',
+                'stock'       => 'required|integer',
+                'description' => 'nullable|string', // Description field added
+                'category_id' => 'required|exists:categories,id',
+                'image'       => 'nullable|image|max:2048',
+            ]);
 
-        $data = $request->only(['name', 'price', 'quantity', 'category_id','stock']);
+            $data = $request->only(['name', 'price', 'category_id', 'stock', 'description']); // Include description in data
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('supplements', 'public');
-            $data['image'] = $imagePath;
+            // Check if image is uploaded
+            if ($request->hasFile('image')) {
+                // Store the image in the public disk (public/supplements)
+                $imagePath = $request->file('image')->store('supplements', 'public');
+                // Set the image path to be stored in the database
+                $data['image'] = '/storage/' . $imagePath;  // Correct path to access the public storage
+            }
+
+            $supplement = Supplement::findOrFail($id);
+            $supplement->update($data);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            \Log::error('Error in update method: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred.'], 500);
         }
-
-        $supplement = Supplement::findOrFail($id);
-        $supplement->update($data);
-
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        \Log::error('Error in update method: ' . $e->getMessage());
-        return response()->json(['error' => 'An error occurred.'], 500);
     }
-}
 
-    
     // Delete supplement
     public function destroy(Supplement $supplement)
     {

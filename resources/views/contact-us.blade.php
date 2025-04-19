@@ -6,7 +6,7 @@
 @section('content')
 <body>
     <link rel="stylesheet" href="contact.css">
-<div class="isolate bg-zinc-900 bg-custom px-6 py-6 sm:py-32 lg:px-8 text-white">   
+<div class="isolate bg-zinc-900 bg-custom px-6 py-6 lg:px-8 text-white">   
     <div class="form-container mx-auto max-w-xl sm:mt-24">    
     <div class=" mx-auto max-w-2xl text-center">         
         <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Send us a message</h2>         

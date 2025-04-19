@@ -20,6 +20,7 @@ class CheckoutController extends Controller
             'cart' => 'required|array',
             'firstName' => 'required|string',
             'lastName' => 'required|string',
+            'Location' => 'required|string',
             'cardNumber' => 'required|string',
             'expiryDate' => 'required|string',
             'cvv' => 'required|string',
@@ -33,13 +34,14 @@ class CheckoutController extends Controller
                     return $item['price'] ?? 0;
                 }),
                 'status' => 'confirmed',
+                'Location' => $data['Location']
             ]);
 
             // Add order items
             foreach ($data['cart'] as $item) {
                 OrderSupplement::create([
                     'order_id' => $order->id,
-                    'supplement_id' => $item['id'] ?? 1,
+                    'supplement_id' => $item['id'],
                     'quantity' => $item['quantity'] ?? 1,
                     'subtotal' => $item['price'] ?? 0,
                 ]);

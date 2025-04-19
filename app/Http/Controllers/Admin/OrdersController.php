@@ -13,8 +13,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        // Fetch orders with related order_supplements data (e.g., supplement name, quantity, and subtotal)
-        $orders = Order::with('orderSupplements.supplement')->get();
+        // Fetch orders with related order_supplements data and user information
+        $orders = Order::with('orderSupplements.supplement', 'user')->get();
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -40,8 +40,8 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        // Fetch single order by ID
-        $order = Order::with('orderSupplements.supplement')->findOrFail($id);
+        // Fetch single order by ID with related order_supplements data and user information
+        $order = Order::with('orderSupplements.supplement', 'user')->findOrFail($id);
 
         return view('admin.orders.show', compact('order'));
     }

@@ -18,10 +18,11 @@
                     <thead class="bg-zinc-800 border-zinc-700 border-3 border text-white">
                         <tr>
                             <th class="px-4 py-2">Order ID</th>
-                            <th class="px-4 py-2">User ID</th>
+                            <th class="px-4 py-2">User Name</th>
                             <th class="px-4 py-2">Total Price</th>
                             <th class="px-4 py-2">Status</th>
                             <th class="px-4 py-2">Created At</th>
+                            <th class="px-4 py-2">Location</th>
                             <th class="px-4 py-2">Actions</th>
                         </tr>
                     </thead>
@@ -29,10 +30,11 @@
                         @foreach($orders as $order)
                             <tr class="border-zinc-900 border border-t-0 hover:bg-zinc-900" data-id="{{ $order->id }}">
                                 <td class="px-4 py-2">{{ $order->id }}</td>
-                                <td class="px-4 py-2">{{ $order->user_id }}</td>
+                                <td class="px-4 py-2">{{ $order->user->name }}</td>
                                 <td class="px-4 py-2">${{ number_format($order->total_price, 2) }}</td>
                                 <td class="px-4 py-2">{{ $order->status }}</td>
                                 <td class="px-4 py-2">{{ $order->created_at->format('Y-m-d H:i:s') }}</td>
+                                <td class="px-4 py-2">{{ $order->Location }}</td>
                                 <td class="px-4 py-2 space-x-2">
                                     <a href="{{ route('admin.orders.show', $order->id) }}"
                                        class="inline-block px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-800 transition">

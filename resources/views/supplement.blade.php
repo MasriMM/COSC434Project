@@ -63,7 +63,7 @@
 </div>
 
     <!-- Cards Section -->
-    <div id="cards" class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+    <div id="cards" class=" bg-black grid grid-cols-1 md:grid-cols-3 gap-8 p-4">
         <!-- Dynamic cards will be appended here -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

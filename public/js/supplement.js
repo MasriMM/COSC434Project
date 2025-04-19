@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 data.forEach(item => {
                     const card = document.createElement("div");
-                    card.classList.add("bg-gray-800", "rounded-lg", "shadow-md", "overflow-hidden", "transition-transform", "hover:scale-105");
+                    card.classList.add("bg-zinc-800", "rounded-lg", "shadow-md", "overflow-hidden", "transition-transform", "hover:scale-105");
+
+                    // Add data-id attribute to the card
+                    card.setAttribute("data-id", item.id);
 
                     let imagePath = item.image.startsWith('http') ? item.image : `${item.image}`;
                     let categoryName = item.category ? item.category.name : 'N/A';
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     card.innerHTML = `
                         <img src="${imagePath}" alt="${item.name}" class="w-full h-48 object-cover object-center">
                         <div class="p-4">
-                            <h3 class="text-xl font-bold mb-2">${item.name}</h3>
+                            <h3 class="text-xl text-white font-bold mb-2">${item.name}</h3>
                             <p class="text-gray-400 text-sm mb-2">${item.description}</p>
                             <p class="text-red-400 font-semibold mb-2">Category: ${categoryName}</p>
                             <p class="text-green-400 font-bold mb-2">$${(parseFloat(item.price) || 0).toFixed(2)}</p>
@@ -55,29 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
     loadSupplements();
     document.getElementById("applyFilter").addEventListener("click", loadSupplements);
     document.getElementById("searchInput").addEventListener("input", loadSupplements);
-});
-document.addEventListener("DOMContentLoaded", function () {
-    var swiper = new Swiper(".mySwiper", {
-        loop: true, 
-        autoplay: {
-            delay: 3000, 
-            disableOnInteraction: false, 
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        slidesPerView: 1,
-        spaceBetween: 10,
-        effect: "fade", 
-    });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+    // Cart management
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartCount = document.getElementById("cartCount");
     const cartTotal = document.getElementById("cartTotal");
@@ -114,11 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("cards").addEventListener("click", function (event) {
         if (event.target.tagName === "BUTTON" && event.target.textContent.includes("Add to Cart")) {
             event.preventDefault(); // Prevent event bubbling
-            const card = event.target.closest(".bg-gray-800");
+            const card = event.target.closest(".bg-zinc-800");
+
+            const supplementId = card.getAttribute("data-id"); // Get the supplement's ID
             const name = card.querySelector("h3").textContent;
             const price = parseFloat(card.querySelector(".text-green-400").textContent.replace("$", ""));
 
-            cart.push({ name, price });
+            // Push the supplement ID, name, and price to the cart
+            cart.push({ id: supplementId, name, price });
             updateCartDisplay();
         }
     });
@@ -129,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        window.location.href = "/checkout/";
+        window.location.href = "/checkout/"; // Redirect to checkout page
     });
 
     document.getElementById("cartButton").addEventListener("click", function () {
