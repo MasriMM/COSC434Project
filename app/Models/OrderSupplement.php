@@ -6,20 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderSupplement extends Model
 {
-    protected $table = 'exercise_muscle_groups';
+    protected $table = 'order_supplements'; // Explicitly specify table name
 
     protected $fillable = [
-        'user_id',
         'order_id',
-        'subtotal',
-        'quantity'
+        'supplement_id',
+        'quantity',
+        'subtotal'
     ];
 
-    public function supplements(){
-        return $this->belongsTo(Supplement::class);
+    public function supplement()
+    {
+        return $this->belongsTo(Supplement::class, 'supplement_id');
     }
 
-    public function orders(){
+    public function order()
+    {
         return $this->belongsTo(Order::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -12,7 +13,10 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return view('admin.orders.index');
+        // Fetch orders with related order_supplements data (e.g., supplement name, quantity, and subtotal)
+        $orders = Order::with('orderSupplements.supplement')->get();
+
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -20,7 +24,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+        // Implement creation logic if necessary
     }
 
     /**
@@ -28,38 +32,45 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Implement store logic if necessary
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Fetch single order by ID
+        $order = Order::with('orderSupplements.supplement')->findOrFail($id);
+
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        // Implement edit logic if necessary
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Implement update logic if necessary
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Find and delete order
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully.');
     }
 }

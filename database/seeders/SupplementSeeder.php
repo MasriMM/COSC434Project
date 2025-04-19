@@ -22,7 +22,7 @@ class SupplementSeeder extends Seeder
             'category_id' => $categories['Protein'],
             'price' => 39.99,
             'stock' => 50,
-            'image' => 'imgs/whey.png',
+            'image' => '/imgs/whey.png',
             'created_at' => now(),
             'updated_at' => now(),
         ],

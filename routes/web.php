@@ -1,10 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\OrdersController;
-use App\Http\Controllers\Admin\SupplementsController;
+use App\Http\Controllers\Admin\AdminSupplementController;
 use App\Http\Controllers\Admin\ProgramsController;
 use App\Http\Controllers\Admin\ExercisesController;
 use App\Http\Controllers\Admin\MessagesController;
@@ -50,7 +52,7 @@ Route::prefix('Admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Full CRUD routes
     Route::resource('users', UserController::class);
     Route::resource('orders', OrdersController::class);
-    Route::resource('supplements', SupplementsController::class);
+    Route::resource('supplements', AdminSupplementController::class);
     Route::resource('programs', ProgramsController::class);
     Route::resource('exercises', ExercisesController::class);
 
@@ -61,6 +63,7 @@ Route::prefix('Admin')->name('admin.')->middleware(['auth'])->group(function () 
 
 Route::get('/supplements', [SupplementController::class, 'index'])->name('supplements.index');
 Route::get('/get-supplements', [SupplementController::class, 'getSupplements'])->name('supplements.get');
+
+
 Route::get('/checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-    

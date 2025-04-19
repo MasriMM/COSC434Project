@@ -42,7 +42,7 @@
                         <a href="#" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Programs</a>
                         <a href="/supplements" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Shop</a>
                         <a href="/contact-us" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Contact Us</a>
-                        <a href="{{ route('programs.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition">Add New Program</a>
+                        
                         @auth
                             @if(auth()->user()->role === 'admin')
                                 <a href="{{ route('admin.users.index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Dashboard</a>

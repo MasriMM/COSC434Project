@@ -125,15 +125,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div class=" opacity-0 animate-fade-in-late">
-                <iframe class="w-full h-auto rounded-lg shadow-xl"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3311.7562440302304!2d35.47450858275886!3d33.89593110415621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f172b23035589%3A0xb1a9cdc8d5568820!2sFitness%20Zone%20-%20Hamra!5e0!3m2!1sen!2sus!4v1742147455595!5m2!1sen!2sus" 
-                    allowfullscreen="" loading="lazy">
-                </iframe>
-            </div>
-        </div>
-=======
      <div class="w-full h-[450px] mt-12">
         <iframe 
             class="w-full h-full"
@@ -143,9 +134,8 @@
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
-</div>
+     </div>
 
->>>>>>> ac7dc55befb1d9baeced58208189b190dea6cfb1
     </section>
 </div>
 
