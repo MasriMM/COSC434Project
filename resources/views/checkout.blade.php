@@ -54,6 +54,7 @@
         </button>
     </div>
 </div>
+
 <script src="{{ asset('js/checkout.js') }}"></script>
 </body>
 </html>

@@ -1,82 +1,138 @@
 <x-app-layout>
-    <h1>Suuplements</h1>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Manage Supplements</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Manage Supplements (AJAX)</h2>
     </x-slot>
 
     <div class="py-6 px-4 mx-auto sm:px-6 lg:px-8">
         <div class="bg-white shadow-sm rounded-lg p-6">
-            <!-- Search and Filter -->
-            <form method="GET" class="mb-6 flex flex-wrap items-center gap-4">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search supplements..." class="border p-2 rounded w-full sm:w-1/3">
+            <button id="addNew" class="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                + Add New Supplement
+            </button>
 
-                <select name="sort" class="border p-2 rounded">
-                    <option value="">Sort by</option>
-                    <option value="name" {{ request('sort') === 'name' ? 'selected' : '' }}>Name</option>
-                    <option value="price" {{ request('sort') === 'price' ? 'selected' : '' }}>Price</option>
-                    <option value="quantity" {{ request('sort') === 'quantity' ? 'selected' : '' }}>Quantity</option>
-                </select>
+            <!-- Supplement Form -->
+            <div id="supplementForm" class="hidden mb-4">
+                <h3 id="formTitle" class="text-lg font-semibold mb-2">Add Supplement</h3>
+                <form id="ajaxSupplementForm" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" id="supplementId">
 
-                <select name="direction" class="border p-2 rounded">
-                    <option value="asc" {{ request('direction') === 'asc' ? 'selected' : '' }}>ASC</option>
-                    <option value="desc" {{ request('direction') === 'desc' ? 'selected' : '' }}>DESC</option>
-                </select>
+                    <input type="text" name="name" id="name" placeholder="Name" class="w-full mb-2 p-2 border rounded">
+                    <input type="number" name="price" id="price" placeholder="Price" class="w-full mb-2 p-2 border rounded">
+                    <input type="number" name="quantity" id="quantity" placeholder="Quantity" class="w-full mb-2 p-2 border rounded">
+                    <input type="file" name="image" id="image" class="w-full mb-2 p-2 border rounded">
 
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Filter</button>
+                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save</button>
+                </form>
+            </div>
 
-                <a href="{{ route('supplements.create') }}" class="ml-auto bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                    + Add New
-                </a>
-            </form>
-
-            <!-- Table -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-left border rounded">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-2 border">Image</th>
-                            <th class="px-4 py-2 border">Name</th>
-                            <th class="px-4 py-2 border">Price</th>
-                            <th class="px-4 py-2 border">Quantity</th>
-                            <th class="px-4 py-2 border">Actions</th>
+            <table class="min-w-full text-left border rounded">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-4 py-2 border">Image</th>
+                        <th class="px-4 py-2 border">Name</th>
+                        <th class="px-4 py-2 border">Price</th>
+                        <th class="px-4 py-2 border">Quantity</th>
+                        <th class="px-4 py-2 border">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="supplementsTable">
+                    @foreach ($supplements as $supplement)
+                        <tr data-id="{{ $supplement->id }}" class="border-t hover:bg-gray-50">
+                            <td class="px-4 py-2">
+                                @if($supplement->image)
+                                    <img src="{{  $supplement->image }}" class="w-12 h-12 object-cover rounded">
+                                @else
+                                    <span class="text-gray-400">No image</span>
+                                @endif
+                            </td>
+                            <td class="px-4 py-2">{{ $supplement->name }}</td>
+                            <td class="px-4 py-2">${{ number_format($supplement->price, 2) }}</td>
+                            <td class="px-4 py-2">{{ $supplement->quantity }}</td>
+                            <td class="px-4 py-2">
+                                <button class="editBtn text-yellow-600 hover:underline">Edit</button>
+                                <button class="deleteBtn text-red-600 hover:underline">Delete</button>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($supplements as $supplement)
-                            <tr class="border-t hover:bg-gray-50">
-                                <td class="px-4 py-2">
-                                    @if($supplement->image)
-                                        <img src="{{ asset('storage/' . $supplement->image) }}" alt="{{ $supplement->name }}" class="w-12 h-12 object-cover rounded">
-                                    @else
-                                        <span class="text-gray-400">No image</span>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-2">{{ $supplement->name }}</td>
-                                <td class="px-4 py-2">${{ number_format($supplement->price, 2) }}</td>
-                                <td class="px-4 py-2">{{ $supplement->quantity }}</td>
-                                <td class="px-4 py-2 space-x-2">
-                                    <a href="{{ route('supplements.show', $supplement) }}" class="text-blue-600 hover:underline">View</a>
-                                    <a href="{{ route('supplements.edit', $supplement) }}" class="text-yellow-600 hover:underline">Edit</a>
-                                    <form action="{{ route('supplements.destroy', $supplement) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:underline" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-4 py-4 text-center text-gray-500">No supplements found.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="mt-6">
-                {{ $supplements->withQueryString()->links() }}
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+
+        $('#addNew').on('click', function () {
+            $('#ajaxSupplementForm')[0].reset();
+            $('#supplementId').val('');
+            $('#formTitle').text('Add Supplement');
+            $('#supplementForm').removeClass('hidden');
+        });
+
+        // Submit form
+        $('#ajaxSupplementForm').on('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let id = $('#supplementId').val();
+            let method = id ? 'POST' : 'POST';
+            let url = id ? `/Admin/supplements/${id}` : `/Admin/supplements`;
+
+            if (id) formData.append('_method', 'PATCH');
+
+            $.ajax({
+                url: url,
+                type: method,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    alert('Saved successfully');
+                    location.reload();
+                },
+                error: function () {
+                    alert('Error saving data.');
+                }
+            });
+        });
+
+        // Edit button click
+        $('.editBtn').on('click', function () {
+            let row = $(this).closest('tr');
+            let id = row.data('id');
+            let name = row.find('td:eq(1)').text().trim();
+            let price = row.find('td:eq(2)').text().replace('$', '').trim();
+            let quantity = row.find('td:eq(3)').text().trim();
+
+            $('#formTitle').text('Edit Supplement');
+            $('#supplementId').val(id);
+            $('#name').val(name);
+            $('#price').val(price);
+            $('#quantity').val(quantity);
+            $('#supplementForm').removeClass('hidden');
+        });
+
+        // Delete button click
+        $('.deleteBtn').on('click', function () {
+            if (!confirm('Are you sure?')) return;
+
+            let id = $(this).closest('tr').data('id');
+
+            $.ajax({
+                url: `/Admin/supplements/${id}`,
+                type: 'DELETE',
+                success: function () {
+                    alert('Deleted successfully');
+                    location.reload();
+                },
+                error: function () {
+                    alert('Error deleting data.');
+                }
+            });
+        });
+    </script>
 </x-app-layout>

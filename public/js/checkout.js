@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        fetch("{{ route('checkout.process') }}", {
+        fetch("/checkout", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -63,6 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.success) {
                     popupModal.classList.remove("hidden");
                     localStorage.removeItem("cart");
+
+                    // Clear form inputs
+                    document.getElementById("firstName").value = "";
+                    document.getElementById("lastName").value = "";
+                    document.getElementById("cardNumber").value = "";
+                    document.getElementById("expiryDate").value = "";
+                    document.getElementById("cvv").value = "";
+
+                    // Optionally, reload the cart items display
+                    cartItemsElement.innerHTML = "<p class='text-center text-gray-400'>Your cart is empty.</p>";
+                    totalPriceElement.textContent = "$0.00";
                 } else {
                     alert("Error processing payment. Please try again.");
                 }
@@ -75,6 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     closePopupButton.addEventListener("click", function () {
         popupModal.classList.add("hidden");
-        window.location.href = "{{ route('supplements') }}";
+        window.location.href = "/supplements";
     });
 });

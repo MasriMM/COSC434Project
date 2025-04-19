@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supplement; // Import the Supplement model
 use Illuminate\Http\Request;
 
 class SupplementController extends Controller
@@ -19,24 +20,36 @@ class SupplementController extends Controller
      */
     public function getSupplements(Request $request)
     {
-        $query = Supplement::query();
+        try {
+            $query = Supplement::query();
 
-        if ($request->filled('search')) {
-            $query->where('name', 'LIKE', '%' . $request->input('search') . '%');
+            // Apply search filter if provided
+            if ($request->has('search') && $request->search) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            }
+
+            // Apply category filter if provided
+            if ($request->has('category') && $request->category) {
+                $query->where('category_id', $request->category);
+            }
+
+            // Fetch the supplements based on the filters
+            $supplements = $query->get();
+
+            return response()->json($supplements);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Error fetching supplements: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to load supplements'], 500);
         }
-
-        if ($request->filled('category')) {
-            $query->where('category', $request->input('category'));
-        }
-
-        return response()->json($query->get());
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 
     /**
@@ -44,7 +57,7 @@ class SupplementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 
     /**
@@ -52,7 +65,7 @@ class SupplementController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 
     /**
@@ -60,7 +73,7 @@ class SupplementController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 
     /**
@@ -68,7 +81,7 @@ class SupplementController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 
     /**
@@ -76,6 +89,6 @@ class SupplementController extends Controller
      */
     public function destroy(string $id)
     {
-        //  
+        // This method is not used, you can leave it empty or handle it as needed.
     }
 }
