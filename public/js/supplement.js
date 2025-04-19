@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let categoryName = item.category ? item.category.name : 'N/A';
 
                     card.innerHTML = `
-                        <img src="${imagePath}" alt="${item.name}" class="w-full h-48 object-cover object-center">
+                        <img src="${imagePath}" alt="${item.name}" class="w-full h-[300px] object-cover object-center" style="height:250px">
                         <div class="p-4">
                             <h3 class="text-xl text-white font-bold mb-2">${item.name}</h3>
                             <p class="text-gray-400 text-sm mb-2">${item.description}</p>
