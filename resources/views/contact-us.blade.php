@@ -12,72 +12,81 @@
         <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Send us a message</h2>         
         <p class="mt-2 text-lg text-gray-300">We would love to hear from you!</p>     
     </div>   
-    <form action="#" method="POST" class="mx-auto mt-2 max-w-xl sm:mt-20 p-0 rounded-lg shadow-lg">
-        <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-            <!-- First Name Field -->
-            <div class="group relative">
-                <label for="first-name" class="block text-sm font-semibold text-white">First name</label>
-                <div class="relative mt-2.5">
-                    <input type="text" name="first-name" id="first-name"
-                        class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
-                        placeholder="Enter your first name">
-                    <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
-                </div>
-            </div>
 
-            <!-- Last Name Field -->
-            <div class="group relative">
-                <label for="last-name" class="block text-sm font-semibold text-white">Last name</label>
-                <div class="relative mt-2.5">
-                    <input type="text" name="last-name" id="last-name"
-                        class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
-                        placeholder="Enter your last name">
-                    <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
+    @if(session('success'))
+                <div class="alert alert-success bg-green-500 text-white text-center p-3 rounded-md mb-4">
+                    {{ session('success') }}
                 </div>
-            </div>
+            @endif
+    <form action="{{ route('messages.store') }}" method="POST" class="mx-auto mt-2 max-w-xl sm:mt-20 p-0 rounded-lg shadow-lg">
+    @csrf <!-- CSRF token for security -->
 
-            <!-- Email Field -->
-            <div class="sm:col-span-2 group relative">
-                <label for="email" class="block text-sm font-semibold text-white">Email</label>
-                <div class="relative mt-2.5">
-                    <input type="email" name="email" id="email"
-                        class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
-                        placeholder="Enter your email address">
-                    <i class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
-                </div>
-            </div>
-
-            <!-- Subject Field -->
-            <div class="sm:col-span-2 group relative">
-                <label for="subject" class="block text-sm font-semibold text-white">Subject</label>
-                <div class="relative mt-2.5">
-                    <input type="text" name="subject" id="subject"
-                        class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
-                        placeholder="Enter your subject">
-                    <i class="fa-solid fa-pencil absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
-                </div>
-            </div>
-
-            <!-- Message Field -->
-            <div class="sm:col-span-2 group relative">
-                <label for="message" class="block text-sm font-semibold text-white">Message</label>
-                <div class="relative mt-2.5">
-                    <textarea name="message" id="message" rows="4"
-                        class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-white placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
-                        placeholder="Enter your feedback"></textarea>
-                    <i class="fa-solid fa-comment-dots absolute right-3 bottom-3 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
-                </div>
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+        <!-- First Name Field -->
+        <div class="group relative">
+            <label for="first-name" class="block text-sm font-semibold text-white">First name</label>
+            <div class="relative mt-2.5">
+                <input type="text" name="first-name" id="first-name"
+                    class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-black placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
+                    placeholder="Enter your first name" required>
+                <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
             </div>
         </div>
 
-        <!-- Submit Button -->
-        <div class="mt-10">
-            <button type="submit"
-                class="block w-full rounded-md bg-red-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-500 hover:scale-105 transition-all duration-300 focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
-                <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
-            </button>
+        <!-- Last Name Field -->
+        <div class="group relative">
+            <label for="last-name" class="block text-sm font-semibold text-white">Last name</label>
+            <div class="relative mt-2.5">
+                <input type="text" name="last-name" id="last-name"
+                    class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-black placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
+                    placeholder="Enter your last name" required>
+                <i class="fa-solid fa-user absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
+            </div>
         </div>
-    </form>
+
+        <!-- Email Field -->
+        <div class="sm:col-span-2 group relative">
+            <label for="email" class="block text-sm font-semibold text-white">Email</label>
+            <div class="relative mt-2.5">
+                <input type="email" name="email" id="email"
+                    class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-black placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
+                    placeholder="Enter your email address" required>
+                <i class="fa-solid fa-envelope absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
+            </div>
+        </div>
+
+        <!-- Subject Field -->
+        <div class="sm:col-span-2 group relative">
+            <label for="subject" class="block text-sm font-semibold text-white">Subject</label>
+            <div class="relative mt-2.5">
+                <input type="text" name="subject" id="subject"
+                    class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-black placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
+                    placeholder="Enter your subject" required>
+                <i class="fa-solid fa-pencil absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
+            </div>
+        </div>
+
+        <!-- Message Field -->
+        <div class="sm:col-span-2 group relative">
+            <label for="message" class="block text-sm font-semibold text-white">Message</label>
+            <div class="relative mt-2.5">
+                <textarea name="message" id="message" rows="4"
+                    class="block w-full rounded-md border border-gray-600 px-3.5 py-2 pr-10 text-black placeholder-gray-400 focus:ring-red-500 focus:border-red-500 transition-all duration-300 hover:border-red-500 group-hover:scale-105"
+                    placeholder="Enter your feedback" required></textarea>
+                <i class="fa-solid fa-comment-dots absolute right-3 bottom-3 text-gray-400 group-hover:text-red-500 transition-all duration-300"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mt-10">
+        <button type="submit"
+            class="block w-full rounded-md bg-red-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-red-500 hover:scale-105 transition-all duration-300 focus:ring-2 focus:ring-red-600 focus:ring-offset-2">
+            <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
+        </button>
+    </div>
+</form>
+
     </div> 
 </div>
 

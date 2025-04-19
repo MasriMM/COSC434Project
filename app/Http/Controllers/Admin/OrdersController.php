@@ -6,15 +6,37 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
+
 class OrdersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch orders with related order_supplements data and user information
-        $orders = Order::with('orderSupplements.supplement', 'user')->get();
+        // Start the query for orders with related data
+        $query = Order::with('orderSupplements.supplement', 'user');
+
+        // Handle search by user name
+        if ($request->has('search') && $request->search != '') {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Handle sorting by newest or oldest
+        if ($request->has('sort')) {
+            if ($request->sort === 'oldest') {
+                $query->orderBy('created_at', 'asc');
+            } else {
+                $query->orderBy('created_at', 'desc'); // default to newest first
+            }
+        } else {
+            $query->orderBy('created_at', 'desc'); // default to newest first
+        }
+
+        // Fetch orders with pagination to avoid loading too many at once
+        $orders = $query->paginate(10)->appends($request->all()); // Ensure filters stay applied during pagination
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -57,10 +79,19 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        // Implement update logic if necessary
-    }
+    public function updateStatus(Request $request)
+{
+    $request->validate([
+        'order_id' => 'required|exists:orders,id',
+        'status' => 'required|string'
+    ]);
+
+    $order = Order::findOrFail($request->order_id);
+    $order->status = $request->status;
+    $order->save();
+
+    return response()->json(['success' => true, 'message' => 'Order status updated']);
+}
 
     /**
      * Remove the specified resource from storage.

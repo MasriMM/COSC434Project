@@ -52,7 +52,7 @@
     </div>
 <!-- Cart Popup -->
 <div id="cartPopup" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[999]">
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg w-96">
+    <div class="bg-zinc-900 p-6 rounded-lg shadow-lg w-96">
         <h2 class="text-xl font-bold mb-4">Shopping Cart</h2>
         <ul id="cartItems" class="space-y-2"></ul>
         <hr class="border-gray-700 my-2">

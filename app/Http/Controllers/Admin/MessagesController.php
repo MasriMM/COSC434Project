@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Message;
 
 class MessagesController extends Controller
 {
@@ -29,7 +30,28 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming data
+        $validated = $request->validate([
+            'first-name' => 'required|string|max:255',
+            'last-name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Create and save the new message
+        $message = new Message();
+        $message->first_name = $validated['first-name'];
+        $message->last_name = $validated['last-name'];
+        $message->email = $validated['email'];
+        $message->subject = $validated['subject'];
+        $message->content = $validated['message'];
+        $message->save();
+
+        session()->flash('success', 'Your message has been sent successfully!');
+
+        // Redirect or return a response after saving the message
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 
     /**

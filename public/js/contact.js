@@ -18,4 +18,6 @@ function toggleFAQ(button) {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-plus');
     }
+
+    
 }

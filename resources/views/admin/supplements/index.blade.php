@@ -1,80 +1,96 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Manage Supplements (AJAX)</h2>
-    </x-slot>
-
-    <div class="py-6 px-4 mx-auto sm:px-6 lg:px-8">
-        <div class="bg-black shadow-sm rounded-lg p-6">
-            <div class="flex items-center justify-between">
-                <h1 class="text-white text-[30px]">
-                    Supplements Management
-                </h1>
-                <button id="addNew" class="mb-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800">
+    <div class="container mx-auto p-6">
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-6 gap-4">
+            <h1 class="text-3xl font-bold text-white text-center">Supplements Management</h1>
+            <div class="flex justify-center">
+                <button id="addNew" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 text-sm">
                     + Add New Supplement
                 </button>
             </div>
+        </div>
 
-            <!-- Supplement Form -->
-            <div id="supplementForm" class="hidden mb-4">
-                <h3 id="formTitle" class="text-white text-lg font-semibold mb-2">Add Supplement</h3>
-                <form id="ajaxSupplementForm" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="id" id="supplementId">
+        <!-- Supplement Form -->
+        <div id="supplementForm" class="hidden mb-6 bg-zinc-900 text-white rounded-lg p-4 border border-zinc-700 shadow">
+            <h3 id="formTitle" class="text-lg font-semibold mb-3">Add Supplement</h3>
+            <form id="ajaxSupplementForm" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" id="supplementId">
 
-                    <input type="text" name="name" id="name" placeholder="Name" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    <input type="number" name="price" id="price" placeholder="Price" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    <input type="number" name="stock" id="stock" placeholder="Stock" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" id="name" placeholder="Name"
+                        class="px-3 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600 placeholder-gray-400 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
 
-                    <input type="hidden" name="category_id" value="1">
+                    <input type="number" name="price" id="price" placeholder="Price"
+                        class="px-3 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600 placeholder-gray-400 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
 
-                    <!-- Description input -->
-                    <textarea name="description" id="description" placeholder="Description" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+                    <input type="number" name="stock" id="stock" placeholder="Stock"
+                        class="px-3 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600 placeholder-gray-400 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
 
-                    <input type="file" name="image" id="image" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                    <input type="file" name="image" id="image"
+                        class="px-3 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500" />
+                </div>
 
-                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 transition">Save</button>
-                </form>
-            </div>
+                <input type="hidden" name="category_id" value="1" />
 
-            <!-- Supplements Table -->
-            <table class="min-w-full text-left border rounded">
-                <thead class="bg-zinc-800 border-zinc-700 border-3 border text-white">
+                <textarea name="description" id="description" placeholder="Description"
+                    class="mt-4 px-3 py-2 w-full rounded-md bg-zinc-800 text-white border border-zinc-600 placeholder-gray-400 text-sm focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500"></textarea>
+
+                <button type="submit"
+                    class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-500 text-sm">
+                    Save
+                </button>
+            </form>
+        </div>
+
+        <!-- Supplements Table -->
+        <div class="overflow-x-auto bg-zinc-900 text-gray-100 rounded-lg shadow border border-zinc-700">
+            <table class="min-w-full divide-y divide-zinc-700 text-sm">
+                <thead class="bg-zinc-800 text-gray-300">
                     <tr>
-                        <th class="px-4 py-2">Image</th>
-                        <th class="px-4 py-2">Name</th>
-                        <th class="px-4 py-2">Price</th>
-                        <th class="px-4 py-2">Stock</th>
-                        <th class="px-4 py-2">Description</th>
-                        <th class="px-4 py-2">Actions</th>
+                        <th class="px-4 py-3 text-left">Image</th>
+                        <th class="px-4 py-3 text-left">Name</th>
+                        <th class="px-4 py-3 text-left">Price</th>
+                        <th class="px-4 py-3 text-left">Stock</th>
+                        <th class="px-4 py-3 text-left">Description</th>
+                        <th class="px-4 py-3 text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="supplementsTable">
-                    @foreach ($supplements as $supplement)
-                        <tr data-id="{{ $supplement->id }}" class="border-zinc-900 text-white border border-t-0 hover:bg-zinc-900">
+                <tbody id="supplementsTable" class="divide-y divide-zinc-800">
+                    @forelse($supplements as $supplement)
+                        <tr data-id="{{ $supplement->id }}" class="hover:bg-zinc-800 transition">
                             <td class="px-4 py-2">
                                 @if($supplement->image)
-                                    <img src="{{ $supplement->image }}" class="w-12 h-12 object-cover rounded">
+                                    <img src="{{ $supplement->image }}" class="w-12 h-12 object-cover rounded" />
                                 @else
-                                    <span class="text-gray-400">No image</span>
+                                    <span class="text-gray-500">No image</span>
                                 @endif
                             </td>
-                            <td class="px-4 py-2">{{ $supplement->name }}</td>
+                            <td class="px-4 py-2 font-semibold text-white">{{ $supplement->name }}</td>
                             <td class="px-4 py-2">${{ number_format($supplement->price, 2) }}</td>
                             <td class="px-4 py-2">{{ $supplement->stock }}</td>
-                            <td class="px-4 py-2">{{ $supplement->description ?? 'No description' }}</td>
-                            <td class="px-4 py-2">
-                                <button class="editBtn text-blue-600 hover:underline mr-3">Edit</button>
-                                <button class="deleteBtn text-red-600 hover:underline">Delete</button>
+                            <td class="px-4 py-2">{{ $supplement->description ?? '-' }}</td>
+                            <td class="px-4 py-2 text-center">
+                                <div class="flex justify-center items-center space-x-2">
+                                    <button class="editBtn text-blue-400 hover:text-blue-300 transition">
+                                        <i class="fas fa-edit mr-1"></i>Edit
+                                    </button>
+                                    <button class="deleteBtn text-red-400 hover:text-red-300 transition">
+                                        <i class="fas fa-trash mr-1"></i>Delete
+                                    </button>
+                                </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-6 text-gray-500">No supplements found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/adminSupplement.js"></script>
 </x-app-layout>
