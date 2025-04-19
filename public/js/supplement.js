@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const supplementsUrl = "/get-supplements"; // Ensure this points to the correct route
+    const supplementsUrl = "/get-supplements";
 
     function loadSupplements() {
         const cardsContainer = document.getElementById("cards");
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(supplementsUrl + "?" + queryParams.toString())
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 cardsContainer.innerHTML = "";
 
                 if (data.length === 0) {
@@ -28,13 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     card.classList.add("bg-gray-800", "rounded-lg", "shadow-md", "overflow-hidden", "transition-transform", "hover:scale-105");
 
                     let imagePath = item.image.startsWith('http') ? item.image : `${item.image}`;
+                    let categoryName = item.category ? item.category.name : 'N/A';
 
                     card.innerHTML = `
                         <img src="${imagePath}" alt="${item.name}" class="w-full h-48 object-cover object-center">
                         <div class="p-4">
                             <h3 class="text-xl font-bold mb-2">${item.name}</h3>
                             <p class="text-gray-400 text-sm mb-2">${item.description}</p>
-                            <p class="text-red-400 font-semibold mb-2">Category: ${item.category}</p>
+                            <p class="text-red-400 font-semibold mb-2">Category: ${categoryName}</p>
                             <p class="text-green-400 font-bold mb-2">$${(parseFloat(item.price) || 0).toFixed(2)}</p>
                             <p class="text-gray-400 text-sm mb-4">In Stock: ${item.stock}</p>
                             <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full">
@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("applyFilter").addEventListener("click", loadSupplements);
     document.getElementById("searchInput").addEventListener("input", loadSupplements);
 });
-
 document.addEventListener("DOMContentLoaded", function () {
     var swiper = new Swiper(".mySwiper", {
         loop: true, 

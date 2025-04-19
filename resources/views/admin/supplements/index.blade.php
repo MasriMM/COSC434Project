@@ -4,40 +4,51 @@
     </x-slot>
 
     <div class="py-6 px-4 mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white shadow-sm rounded-lg p-6">
-            <button id="addNew" class="mb-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <div class="bg-black shadow-sm rounded-lg p-6">
+            <div class="flex items-center justify-between">
+                <h1 class="text-white text-[30px]">
+                    Supplements Management
+                </h1>
+                            <button id="addNew" class="mb-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800">
                 + Add New Supplement
             </button>
+            </div>
+
 
             <!-- Supplement Form -->
             <div id="supplementForm" class="hidden mb-4">
-                <h3 id="formTitle" class="text-lg font-semibold mb-2">Add Supplement</h3>
-                <form id="ajaxSupplementForm" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="id" id="supplementId">
+    <h3 id="formTitle" class="text-white text-lg font-semibold mb-2">Add Supplement</h3>
+    <form id="ajaxSupplementForm" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="id" id="supplementId">
 
-                    <input type="text" name="name" id="name" placeholder="Name" class="w-full mb-2 p-2 border rounded">
-                    <input type="number" name="price" id="price" placeholder="Price" class="w-full mb-2 p-2 border rounded">
-                    <input type="number" name="quantity" id="quantity" placeholder="Quantity" class="w-full mb-2 p-2 border rounded">
-                    <input type="file" name="image" id="image" class="w-full mb-2 p-2 border rounded">
+        <input type="text" name="name" id="name" placeholder="Name" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <input type="number" name="price" id="price" placeholder="Price" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <input type="number" name="quantity" id="quantity" placeholder="Quantity" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        
+        <input type="hidden" name="category_id" value="1">
+        <input type="hidden" name="stock" value="30">
+        
+        <input type="file" name="image" id="image" class="w-full mb-2 p-2 border rounded text-white bg-zinc-800 border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-600">
 
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Save</button>
-                </form>
-            </div>
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 transition">Save</button>
+    </form>
+</div>
+
 
             <table class="min-w-full text-left border rounded">
-                <thead class="bg-gray-100">
+                <thead class="bg-zinc-800 border-zinc-700 border-3 border text-white">
                     <tr>
-                        <th class="px-4 py-2 border">Image</th>
-                        <th class="px-4 py-2 border">Name</th>
-                        <th class="px-4 py-2 border">Price</th>
-                        <th class="px-4 py-2 border">Quantity</th>
-                        <th class="px-4 py-2 border">Actions</th>
+                        <th class="px-4 py-2 ">Image</th>
+                        <th class="px-4 py-2 ">Name</th>
+                        <th class="px-4 py-2 ">Price</th>
+                        <th class="px-4 py-2 ">Stock</th>
+                        <th class="px-4 py-2 ">Actions</th>
                     </tr>
                 </thead>
-                <tbody id="supplementsTable">
+                <tbody id="supplementsTable text-white">
                     @foreach ($supplements as $supplement)
-                        <tr data-id="{{ $supplement->id }}" class="border-t hover:bg-gray-50">
+                        <tr data-id="{{ $supplement->id }}" class="border-zinc-900 text-white border border-t-0 hover:bg-zinc-900">
                             <td class="px-4 py-2">
                                 @if($supplement->image)
                                     <img src="{{  $supplement->image }}" class="w-12 h-12 object-cover rounded">
@@ -47,9 +58,9 @@
                             </td>
                             <td class="px-4 py-2">{{ $supplement->name }}</td>
                             <td class="px-4 py-2">${{ number_format($supplement->price, 2) }}</td>
-                            <td class="px-4 py-2">{{ $supplement->quantity }}</td>
-                            <td class="px-4 py-2">
-                                <button class="editBtn text-yellow-600 hover:underline">Edit</button>
+                            <td class="px-4 py-2">{{ $supplement->stock }}</td>
+                            <td class="px-4 py-2 ">
+                                <button class="editBtn text-blue-600 hover:underline mr-3">Edit</button>
                                 <button class="deleteBtn text-red-600 hover:underline">Delete</button>
                             </td>
                         </tr>
@@ -62,77 +73,5 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-        });
-
-        $('#addNew').on('click', function () {
-            $('#ajaxSupplementForm')[0].reset();
-            $('#supplementId').val('');
-            $('#formTitle').text('Add Supplement');
-            $('#supplementForm').removeClass('hidden');
-        });
-
-        // Submit form
-        $('#ajaxSupplementForm').on('submit', function (e) {
-            e.preventDefault();
-            let formData = new FormData(this);
-            let id = $('#supplementId').val();
-            let method = id ? 'POST' : 'POST';
-            let url = id ? `/Admin/supplements/${id}` : `/Admin/supplements`;
-
-            if (id) formData.append('_method', 'PATCH');
-
-            $.ajax({
-                url: url,
-                type: method,
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function () {
-                    alert('Saved successfully');
-                    location.reload();
-                },
-                error: function () {
-                    alert('Error saving data.');
-                }
-            });
-        });
-
-        // Edit button click
-        $('.editBtn').on('click', function () {
-            let row = $(this).closest('tr');
-            let id = row.data('id');
-            let name = row.find('td:eq(1)').text().trim();
-            let price = row.find('td:eq(2)').text().replace('$', '').trim();
-            let quantity = row.find('td:eq(3)').text().trim();
-
-            $('#formTitle').text('Edit Supplement');
-            $('#supplementId').val(id);
-            $('#name').val(name);
-            $('#price').val(price);
-            $('#quantity').val(quantity);
-            $('#supplementForm').removeClass('hidden');
-        });
-
-        // Delete button click
-        $('.deleteBtn').on('click', function () {
-            if (!confirm('Are you sure?')) return;
-
-            let id = $(this).closest('tr').data('id');
-
-            $.ajax({
-                url: `/Admin/supplements/${id}`,
-                type: 'DELETE',
-                success: function () {
-                    alert('Deleted successfully');
-                    location.reload();
-                },
-                error: function () {
-                    alert('Error deleting data.');
-                }
-            });
-        });
-    </script>
+    <script src="/js/adminSupplement.js"></script>
 </x-app-layout>

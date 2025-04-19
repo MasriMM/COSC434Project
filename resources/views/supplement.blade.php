@@ -34,9 +34,10 @@
         <div class="relative">
             <select id="categoryFilter" class="border border-red-300 bg-black text-white rounded-lg px-4 py-2 outline-none">
                 <option value="">All Categories</option>
-                <option value="protein">Proteins</option>
-                <option value="vitamins">Vitamins</option>
-                <option value="preworkout">Energy Drinks</option>
+                <option value="1">Proteins</option>
+                <option value="2">Performance</option>
+                <option value="10">Energy Drinks</option>
+                <option value="9">Protein Bar</option>
             </select>
         </div>
         <div class="relative">
