@@ -19,7 +19,8 @@ class Exercise extends Model
         ->withTimestamps();
     }
 
-    public function muscleGroup() {
-        return $this->belongsToMany(MuscleGroup::class);
+    public function muscleGroups()
+    {
+        return $this->belongsToMany(MuscleGroup::class, 'exercise_muscle_groups');
     }
 }

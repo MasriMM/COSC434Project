@@ -30,11 +30,23 @@
 
         <div class="mb-4">
             <label class="block mb-1 text-sm">Role</label>
-            <select name="role" class="w-full px-3 py-2 rounded bg-zinc-800 border border-zinc-600 text-white" required>
-                <option value="admin" {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>Admin</option>
-                <option value="user" {{ old('role', $user->role) === 'user' ? 'selected' : '' }}>User</option>
-            </select>
+            <div class="flex gap-6 items-center">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="role" value="admin"
+                        {{ old('role', $user->role) === 'admin' ? 'checked' : '' }}
+                        class="form-radio h-5 w-5 text-red-600 bg-zinc-800 border-zinc-600">
+                    <span class="ml-2 text-sm">Admin</span>
+                </label>
+
+                <label class="inline-flex items-center">
+                    <input type="radio" name="role" value="user"
+                        {{ old('role', $user->role) === 'user' ? 'checked' : '' }}
+                        class="form-radio h-5 w-5 text-red-600 bg-zinc-800 border-zinc-600">
+                    <span class="ml-2 text-sm">User</span>
+                </label>
+            </div>
         </div>
+
 
         <div class="mb-4">
             <label class="block mb-1 text-sm">Gender</label>

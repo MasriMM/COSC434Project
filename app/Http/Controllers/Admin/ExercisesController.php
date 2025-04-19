@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \App\Models\MuscleGroup;
 
 class ExercisesController extends Controller
 {
@@ -20,7 +21,8 @@ class ExercisesController extends Controller
      */
     public function create()
     {
-        //
+        $muscleGroups = MuscleGroup::all();
+        return view('admin.exercises.create', compact('muscleGroups'));
     }
 
     /**
@@ -28,7 +30,34 @@ class ExercisesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'img' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'description' => 'nullable|string',
+            'difficulty' => 'required|in:easy,intermediate,hard',
+            'muscle_groups' => 'required|array',
+            'muscle_groups.*' => 'exists:muscle_groups,id',
+        ]);
+    
+        $imgPath = null;
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('imgs/exercises'), $fileName);
+            $imgPath = 'imgs/exercises/' . $fileName;
+        }
+    
+        $exercise = \App\Models\Exercise::create([
+            'name' => $request->name,
+            'img' => $imgPath,
+            'description' => $request->description,
+            'difficulty' => $request->difficulty,
+        ]);
+    
+        $exercise->muscleGroups()->sync($request->muscle_groups);
+    
+        return redirect()->route('admin.exercises.index')->with('success', 'Exercise created successfully.');
+    
     }
 
     /**

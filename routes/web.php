@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ExercisesController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\SupplementController;
+use App\Http\ProgramController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -67,3 +68,5 @@ Route::get('/get-supplements', [SupplementController::class, 'getSupplements'])-
 
 Route::get('/checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+
+Route::resource('programs', App\Http\ProgramController::class);

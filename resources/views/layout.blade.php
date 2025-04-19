@@ -7,7 +7,6 @@
     @vite('resources/css/app.css')
     <script src="/js/layout.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -42,7 +41,6 @@
                         <a href="#" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Programs</a>
                         <a href="/supplements" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Shop</a>
                         <a href="/contact-us" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Contact Us</a>
-                        
                         @auth
                             @if(auth()->user()->role === 'admin')
                                 <a href="{{ route('admin.users.index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Dashboard</a>
