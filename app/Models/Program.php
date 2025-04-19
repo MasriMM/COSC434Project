@@ -22,7 +22,9 @@ class Program extends Model
     }
 
     public function exercises() {
-        return $this->belongsToMany(Exercise::class)->withPivot('sets', 'reps');
+        return $this->belongsToMany(Exercise::class, 'exercise_programs')
+                ->withPivot('sets', 'reps')
+                ->withTimestamps();
     }
 
     public function likedByUsers() {

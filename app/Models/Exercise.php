@@ -14,7 +14,9 @@ class Exercise extends Model
     ];
 
     public function programs() {
-        return $this->belongsToMany(Program::class)->withPivot('sets', 'reps');
+        return $this->belongsToMany(Program::class, 'exercise_programs')
+        ->withPivot('sets', 'reps')
+        ->withTimestamps();
     }
 
     public function muscleGroup() {
