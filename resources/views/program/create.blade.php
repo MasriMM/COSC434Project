@@ -1,9 +1,12 @@
-<x-app-layout>
-<div class="py-5">
-<div class="max-w-4xl mx-auto bg-zinc-900 p-8 rounded-lg border border-zinc-700 shadow text-white">
+@extends('layout')
+
+@section('title', 'Add New Program') 
+
+@section('content')
+<div class="max-w-4xl mx-auto bg-zinc-900 p-8 rounded-lg border border-zinc-700 shadow text-white focus:ring-1 focus:ring-red-500 focus:border-red-500">
     <h1 class="text-3xl font-semibold text-white mb-6">Create New Program</h1>
 
-    <form action="{{ route('admin.programs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="{{ route('programs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
         <!-- Program Image -->
@@ -89,16 +92,11 @@
                 <div class="bg-zinc-800 border border-zinc-700 rounded-lg p-4"
                      data-difficulty="{{ strtolower($exercise->difficulty) }}"
                      data-muscles="{{ strtolower($exercise->muscleGroups->pluck('name')->implode(',')) }}">
-                    <div class="flex items-center gap-4">
-                        @if ($exercise->img)
-                            <img src="{{ asset($exercise->img) }}" alt="{{ $exercise->name }}" class="w-16 h-16 rounded object-cover border border-zinc-700">
-                        @endif
-
-                        <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <div>
                             <p class="font-semibold text-white">{{ $exercise->name }}</p>
                             <p class="text-sm text-gray-400">{{ $exercise->difficulty }}</p>
                         </div>
-
                         <button type="button" onclick="addExercise({{ $exercise->id }}, '{{ $exercise->name }}')" class="bg-red-500 hover:bg-red-400 px-3 py-1 text-sm rounded-md text-white">
                             Add
                         </button>
@@ -120,7 +118,7 @@
         </button>
     </form>
 </div>
-</div>
+
 <!-- Script -->
 <script>
     let selectedExercises = {};
@@ -138,7 +136,7 @@
             <input type="hidden" name="exercises[${id}][id]" value="${id}">
             <p class="flex-1 text-white">${name}</p>
             <input type="number" name="exercises[${id}][reps]" placeholder="Reps" class="w-24 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded-md text-white" required>
-            <button type="button" onclick="removeExercise(${id})" class="text-red-500 font-bold text-xl leading-none">x</button>
+            <button type="button" onclick="removeExercise(${id})" class="text-red-500 font-bold text-xl leading-none">×</button>
         `;
         container.appendChild(wrapper);
     }
@@ -164,4 +162,4 @@
         });
     }
 </script>
-</x-app-layout>
+@endsection

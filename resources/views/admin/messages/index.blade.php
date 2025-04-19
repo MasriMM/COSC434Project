@@ -1,5 +1,4 @@
 <x-app-layout>
-    <h1>djwndskwnkd</h1>
 <div class="min-h-screen flex items-center justify-center bg-zinc-950 px-4">
     <div class="max-w-7xl w-full">
         <div class="flex justify-end mb-6 pr-8">

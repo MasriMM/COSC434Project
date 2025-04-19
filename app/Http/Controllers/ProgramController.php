@@ -1,23 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Exercise;
 Use App\Models\Program;
-use \App\Models\MuscleGroup;
 use Illuminate\Support\Facades\Auth;
 
-
-class ProgramsController extends Controller
+class ProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.programs.index');
+        //
     }
 
     /**
@@ -25,10 +22,8 @@ class ProgramsController extends Controller
      */
     public function create()
     {
-        $exercises = Exercise::with('muscleGroups')->get(); 
-        $muscleGroups = MuscleGroup::all();
-
-        return view('admin.programs.create', compact('exercises', 'muscleGroups'));
+        $exercises = Exercise::all(); 
+        return view('program.create', compact('exercises'));
     }
 
     /**
@@ -67,7 +62,7 @@ class ProgramsController extends Controller
             'type' => $request->type,
             'level' => $request->level,
             'duration' => $request->duration,
-            'is_public' => true, 
+            'is_public' => false, 
         ]);
     
         // Attach exercises with reps and sets
@@ -80,7 +75,7 @@ class ProgramsController extends Controller
             }
         }
     
-        return redirect()->route('admin.programs.index')->with('success', 'Program created successfully.');    
+        return redirect()->route('programs.index')->with('success', 'Program created successfully.');    
     }
 
     /**

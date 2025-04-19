@@ -14,10 +14,13 @@ class Exercise extends Model
     ];
 
     public function programs() {
-        return $this->belongsToMany(Program::class)->withPivot('sets', 'reps');
+        return $this->belongsToMany(Program::class, 'exercise_programs')
+        ->withPivot('sets', 'reps')
+        ->withTimestamps();
     }
 
-    public function muscleGroup() {
-        return $this->belongsToMany(MuscleGroup::class);
+    public function muscleGroups()
+    {
+        return $this->belongsToMany(MuscleGroup::class, 'exercise_muscle_groups');
     }
 }
