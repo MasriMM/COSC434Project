@@ -12,11 +12,25 @@ class ExercisesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $exercises = Exercise::all();
+        $query = Exercise::query();
+    
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+    
+        $exercises = $query->get();
+    
+        // Return partial if AJAX
+        if ($request->ajax()) {
+            return view('admin.exercises.partials.exercise-list', compact('exercises'))->render();
+        }
+    
         return view('admin.exercises.index', compact('exercises'));
     }
+    
+
 
     /**
      * Show the form for creating a new resource.

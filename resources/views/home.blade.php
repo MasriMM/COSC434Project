@@ -31,8 +31,10 @@
 
                             <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">with FitForg once you see rseults it becomes an addiction</h1>
 
-                            <a href="#feature" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
-
+                            <a href="#feature" class="btn custom-btn bordered mt-3" style="background-color: red; border-color: red; color: white;" data-aos="fade-up" data-aos-delay="600">
+                                Get started
+                              </a>
+                              
                             
                            
                       </div>
@@ -97,14 +99,15 @@
       </div>
       <div class="col-md-4">
         <div class="icon-box wow fadeInUp" data-wow-delay="0.4s"> <i class="fa fa-users" aria-hidden="true"></i>
-          <h5>Schedule a Session</h5>
-          <p>Book your training sessions at your convenience.</p>
-        </div>
+            <h5>Book a Session</h5>
+            <p>Schedule your workouts anytime to match your routine.</p>
+            </div>
       </div>
       <div class="col-md-4">
         <div class="icon-box wow fadeInUp" data-wow-delay="0.6s"> <i class="fa fa-bolt" aria-hidden="true"></i>
-          <h5>Pricing & Packages</h5>
-          <p>Choose a flexible plan that fits your budget and goals.
+            <h5>Plans & Memberships</h5>
+            <p>Select the perfect program tailored to your lifestyle and fitness objectives.</p>
+            
           </p>
         </div>
       </div>
@@ -125,7 +128,7 @@
 <div class="video-popup">
   <div class="video-src">
     <div class="iframe-src">
-      <iframe src="https://www.youtube.com/watch?v=lqb7Jv5NUhk" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_JRefJH6N00" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 </div>
@@ -156,15 +159,17 @@
         </div>
         <div class="media single-feature wow fadeInUp" data-wow-delay="0.4s">
           <div class="media-body text-right media-right-margin">
-            <h5 style="color: white">Flexible Training Packages</h5>
-            <p style="color: white">Choose from one-time sessions, monthly plans, or long-term packages.</p>
+            <h5 style="color: white">Premium Supplements</h5>
+            <p style="color: white">Support your fitness journey with top-quality supplements for energy, recovery, and performance.</p>
+            
           </div>
           <div class="media-right icon-border"> <span class="fa fa-battery-full" aria-hidden="true"></span> </div>
         </div>
         <div class="media single-feature wow fadeInUp" data-wow-delay="0.6s">
           <div class="media-body text-right media-right-margin">
-            <h5 style="color: white">Easy Scheduling System</h5>
-            <p style="color: white">Book training sessions at your convenience, whether in-person or online.</p>
+            <h5 style="color: white">Build Your Own Program</h5>
+            <p style="color: white">Customize your training plan to match your goals, schedule, and fitness level.</p>
+            
           </div>
           <div class="media-right icon-border"> <span class="fa fa-wifi" aria-hidden="true"></span> </div>
         </div>
