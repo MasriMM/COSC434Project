@@ -1,5 +1,5 @@
 <x-app-layout>
-<div class="min-h-screen flex items-center justify-center bg-zinc-950 px-4">
+<div class="min-h-screen flex items-center justify-center bg-zinc-900 px-4">
     <div class="max-w-7xl w-full">
         <div class="max-w-7xl mx-auto flex justify-between items-center px-10 my-4">
             <h1 class="text-3xl font-bold text-white">Users' Messages</h1>
@@ -14,7 +14,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8 pl-8 pr-8">
             @foreach ($messages as $message)
-                <div class="rounded-xl border border-rose-400 bg-zinc-900 text-white p-6 shadow-md transition-transform transform hover:scale-[1.015] hover:shadow-lg duration-200">
+                <div class="rounded-xl border border-rose-400 bg-zinc-800 text-white p-6 shadow-md transition-transform transform hover:scale-[1.015] hover:shadow-lg duration-200">
                     <div class="flex items-center space-x-4 mb-4">
                         <!-- Icon -->
                         <div class="text-3xl text-rose-400">
