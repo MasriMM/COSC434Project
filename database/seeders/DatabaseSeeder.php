@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             ExerciseProgramSeeder::class,
             MuscleGroupSeeder::class,
             ExerciseMuscleGroupSeeder::class,
+            OrderSeeder::class,
+            OrderSupplementSeeder::class,
         ]);
         
     }

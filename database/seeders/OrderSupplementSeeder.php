@@ -16,8 +16,9 @@ class OrderSupplementSeeder extends Seeder
     public function run(): void
     {
         $supplementIds = Supplement::pluck('id')->toArray();
+        $orderIds = Order::pluck('id')->toArray();
 
-        foreach (range(8, 20) as $orderId) {
+        foreach ($orderIds as $orderId) {
             $supplementCount = rand(1, 3); // each order has 1–3 supplements
 
             $selectedSupplements = collect($supplementIds)->random($supplementCount);
