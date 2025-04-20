@@ -23,4 +23,6 @@ class Exercise extends Model
     {
         return $this->belongsToMany(MuscleGroup::class, 'exercise_muscle_groups');
     }
+
+    
 }

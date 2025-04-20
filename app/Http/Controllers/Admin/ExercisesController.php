@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\MuscleGroup;
+use App\Models\Exercise;
 
 class ExercisesController extends Controller
 {
@@ -13,7 +14,8 @@ class ExercisesController extends Controller
      */
     public function index()
     {
-        return view('admin.exercises.index');
+        $exercises = Exercise::all();
+        return view('admin.exercises.index', compact('exercises'));
     }
 
     /**
@@ -65,30 +67,62 @@ class ExercisesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $exercise = Exercise::with('muscleGroups')->findOrFail($id);
+        return view('admin.exercises.show', compact('exercise'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $exercise = Exercise::with('muscleGroups')->findOrFail($id);
+        $muscleGroups = MuscleGroup::all();
+    
+        return view('admin.exercises.edit', compact('exercise', 'muscleGroups'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'difficulty' => 'required|in:easy,intermediate,hard',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'muscle_groups' => 'nullable|array',
+        ]);
+    
+        $exercise = Exercise::findOrFail($id);
+    
+        // Handle image upload if new image is provided
+        if ($request->hasFile('img')) {
+            $exercise->img = $request->file('img')->store('exercises', 'public');
+        }
+    
+        $exercise->name = $request->name;
+        $exercise->description = $request->description;
+        $exercise->difficulty = $request->difficulty;
+        $exercise->save();
+    
+        // Sync muscle groups
+        $exercise->muscleGroups()->sync($request->input('muscle_groups', []));
+    
+        // Redirect back to exercises index
+        return redirect()->route('admin.exercises.index')->with('success', 'Exercise updated successfully.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $exercise = Exercise::findOrFail($id);
+        $exercise->delete();
+
+        return redirect()->route('admin.exercises.index')->with('success', 'Exercise deleted successfully.');
     }
 }

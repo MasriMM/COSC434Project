@@ -8,7 +8,7 @@ use App\Models\Exercise;
 Use App\Models\Program;
 use \App\Models\MuscleGroup;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProgramsController extends Controller
 {
@@ -17,7 +17,8 @@ class ProgramsController extends Controller
      */
     public function index()
     {
-        return view('admin.programs.index');
+        $programs = Program::all();
+        return view('admin.programs.index', compact('programs'));
     }
 
     /**
@@ -88,30 +89,71 @@ class ProgramsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $program = Program::findOrFail($id);
+        return view('admin.programs.show', compact('program'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit($id)
+{
+    $program = Program::with('exercises')->findOrFail($id);
+    $exercises = Exercise::with('muscleGroups')->get();
+    $muscleGroups = MuscleGroup::all();
+
+    return view('admin.programs.edit', compact('program', 'exercises', 'muscleGroups'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'description' => 'nullable|string',
+        'type' => 'required|in:lose_weight,build_muscle,improve_flexibility',
+        'level' => 'required|in:easy,intermediate,hard',
+        'duration' => 'required|numeric|min:0',
+        'sets' => 'required|integer|min:1',
+        'exercises' => 'nullable|array',
+    ]);
+
+    $program = Program::findOrFail($id);
+
+    // Handle image
+    if ($request->hasFile('img')) {
+        $program->img = $request->file('img')->store('programs', 'public');
     }
+
+    $program->update($request->only(['name', 'description', 'type', 'level', 'duration', 'sets']));
+
+    // Sync exercises with reps
+    $exerciseData = [];
+    if ($request->has('exercises')) {
+        foreach ($request->exercises as $exId => $details) {
+            $exerciseData[$exId] = ['reps' => $details['reps']];
+        }
+    }
+    $program->exercises()->sync($exerciseData);
+
+    return redirect()->route('admin.programs.index')->with('success', 'Program updated successfully.');
+}
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $program = Program::findOrFail($id);
+
+        if ($program->img) {
+            Storage::disk('public')->delete($program->img);
+        }
+
+        $program->delete();
+
+        return redirect()->route('admin.programs.index')->with('success', 'Program deleted.');
     }
 }
