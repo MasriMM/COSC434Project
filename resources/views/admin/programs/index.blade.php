@@ -5,69 +5,90 @@
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <style>
             body {
-                background-color: #0e0e0e;
-                color: #000000;
-                font-family: 'Poppins', sans-serif;
-            }
+    background: linear-gradient(135deg, #0e0e0e, #1a0000, #330000);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+        
+.item {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    height: 380px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: fadeIn 0.4s ease-in;
+}
 
-            .item {
-                background: #1e1e1e;
-                border-radius: 12px;
-                padding: 15px;
-                text-align: center;
-                margin-bottom: 30px;
-                position: relative;
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-                width: 100%;
-                max-width: 280px;
-                height: 380px;
-                overflow: hidden;
-                margin-left: auto;
-                margin-right: auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
+.item:hover {
+    transform: rotateY(5deg) rotateX(5deg) scale(1.03);
+    box-shadow: 0 20px 30px rgba(227, 21, 21, 0.6), 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 2px solid #e31515;
+}
 
+
+        
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+        
             .item img {
                 width: 100%;
                 height: 160px;
                 object-fit: cover;
                 border-radius: 8px;
             }
-
+        
             .game-title {
                 font-size: 18px;
                 font-weight: 600;
                 color: #fff;
             }
-
+        
             .game-desc {
                 font-size: 13px;
-                color: #aaa;
+                color: #ccc;
                 line-height: 1.5;
             }
-
+        
             .menu-container {
                 position: absolute;
                 top: 15px;
                 right: 15px;
             }
-
+        
             .menu-toggle {
                 background: transparent;
                 border: none;
-                font-size: 24px;
+                font-size: 22px;
                 color: #fff;
                 cursor: pointer;
                 line-height: 1;
             }
-
+        
             .menu-options {
                 position: absolute;
                 top: 35px;
                 right: 0;
-                background-color: #111;
+                background-color: #1a1a1a;
                 border: 1px solid #444;
                 border-radius: 8px;
                 padding: 8px 12px;
@@ -78,7 +99,7 @@
                 box-shadow: 0 0 10px #000;
                 min-width: 100px;
             }
-
+        
             .menu-options a,
             .menu-options button {
                 background-color: #222;
@@ -94,17 +115,17 @@
                 display: block;
                 width: 100%;
             }
-
+        
             .menu-options a:hover,
             .menu-options button:hover {
                 background-color: #e31515;
                 color: #fff;
             }
-
+        
             .menu-container.active .menu-options {
                 display: flex;
             }
-
+        
             .fab {
                 position: fixed;
                 bottom: 30px;
@@ -119,16 +140,18 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                box-shadow: 0 4px 15px rgba(227, 21, 21, 0.6);
                 cursor: pointer;
                 z-index: 2000;
-                transition: background-color 0.3s ease;
+                transition: 0.3s ease;
             }
-
+        
             .fab:hover {
                 background-color: #b30f0f;
+                box-shadow: 0 0 15px #e31515;
             }
         </style>
+        
     @endsection
 
     <div class="container py-5">

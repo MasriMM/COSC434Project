@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Exercise;
 Use App\Models\Program;
+use \App\Models\MuscleGroup;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProgramController extends Controller
 {
@@ -14,16 +19,26 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        return view('program.index');
+        $userId = auth()->id();
+    
+        $programs = Program::where('is_public', true) // Admin programs
+            ->orWhere('user_id', $userId)             // User’s own programs
+            ->latest()
+            ->get();
+    
+        return view('program.index', compact('programs'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $exercises = Exercise::all(); 
-        return view('program.create', compact('exercises'));
+        $exercises = Exercise::with('muscleGroups')->get(); 
+        $muscleGroups = MuscleGroup::all();
+
+        return view('program.create', compact('exercises', 'muscleGroups'));
     }
 
     /**
@@ -75,16 +90,18 @@ class ProgramController extends Controller
             }
         }
     
-        return redirect()->route('programs.index')->with('success', 'Program created successfully.');    
+        return redirect()->route('program.index')->with('success', 'Program created successfully.');    
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $program = Program::with('exercises')->findOrFail($id); // Eager load exercises
+        return view('program.show', compact('program'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -102,11 +119,23 @@ class ProgramController extends Controller
         //
     }
 
+    
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy(Program $program)
+{
+    if ($program->user_id !== auth()->id() || $program->is_public) {
+        abort(403, 'Unauthorized action.');
     }
+
+    if ($program->img && file_exists(public_path($program->img))) {
+        unlink(public_path($program->img));
+    }
+
+    $program->delete();
+
+    return redirect()->route('program.index')->with('success', 'Program deleted successfully.');
+}
+
 }

@@ -29,11 +29,11 @@
 
                             <h6 data-aos="fade-up" data-aos-delay="300">A fresh approach to achieving a healthier, stronger you!</h6>
 
-                            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">with FitFog once you see rseults it becomes an addiction</h1>
+                            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">with FitForg once you see rseults it becomes an addiction</h1>
 
-                            <a href="#feature" class="btn custom-btn mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
+                            <a href="#feature" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
 
-                            <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">learn more</a>
+                            
                            
                       </div>
                  </div>
@@ -50,11 +50,7 @@
         <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
             <h2 class="mb-3 text-white" data-aos="fade-up">New to the FitFog?</h2>
 
-            <h6 class="mb-4 text-white" data-aos="fade-up">Your membership is up to 2 months FREE ($62.50 per month)</h6>
 
-            <p data-aos="fade-up" data-aos-delay="200"></p>
-
-            <a href="#" class="btn custom-btn bg-color mt-3" data-aos="fade-up" data-aos-delay="300" data-toggle="modal" data-target="#membershipForm">Become a member today</a>
         </div>
 
         <div class="mr-lg-auto mt-3 col-lg-4 col-md-6 col-12">
@@ -113,7 +109,7 @@
         </div>
       </div>
     </div>
-    <a href="#" class="about-btn">Learn More</a> </div>
+    <a href="/about" class="about-btn">Learn More</a> </div>
 </div>
 </div>
 </div>
@@ -206,48 +202,7 @@
 </div>
 </section>
 
-<!-------FAQ Start------->
-<section class="faq section-padding prelative" data-scroll-index='5'>
-<div class="container">
-<div class="row">
-<div class="col-md-12">
-  <div class="sectioner-header text-center">
-    <h3>Frequently Asked Questions</h3>
-    <span class="line"></span>
-    <p>Find answers to common questions about our training programs, scheduling, pricing, and platform features. Whether you're looking for details on personal training, payment options, or technical support, our FAQs provide clear and helpful information to guide you.</p>
-  </div>
-  <div class="section-content">
-    <div class="row">
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.2s">
-        <h4>Do I need prior fitness experience to sign up for training?</h4>
-        <p>No, our programs are designed for all fitness levels, from beginners to advanced athletes. Your trainer will tailor the sessions to match your current abilities and goals.</p>
-      </div>
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.2s">
-        <h4>How do I customize my training program?</h4>
-        <p>After signing up, you can specify your fitness goals, preferred workout style, and any special requirements. Your trainer will then design a personalized plan based on your needs.</p>
-      </div>
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.4s">
-        <h4>What types of workouts are available?</h4>
-        <p>We offer a variety of training programs, including strength training, weight loss, flexibility, endurance, and sports-specific workouts. You can choose a program that aligns with your goals..</p>
-      </div>
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.4s">
-        <h4>How long is a typical personal training session?</h4>
-        <p>Session durations vary but typically range from 30 to 60 minutes, depending on the trainer and package selected.</p>
-      </div>
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.6s">
-        <h4>What payment methods are accepted?</h4>
-        <p>We accept major credit/debit cards, PayPal, and other secure online payment options.</p>
-      </div>
-      <div class="col-md-6 faq-content wow fadeInUp" data-wow-delay="0.6s">
-        <h4>Are there any discounts or membership plans available?</h4>
-        <p>Yes, we offer various membership plans and discounts for bulk session purchases. Visit our pricing page for current offers.</p>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</section>
+
 @endsection
 
 @section('scripts')

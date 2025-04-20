@@ -120,6 +120,58 @@
     list-style: none;
 }
 
+@media (max-width: 750px) {
+    .page-content {
+        padding: 20px 15px;
+    }
+
+    .gaming-library .item {
+        margin-bottom: 30px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 8px rgba(255, 30, 30, 0.25);
+    }
+
+    .gaming-library .item ul {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .gaming-library .item ul li {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .gaming-library .item ul li h4 {
+        font-size: 14px;
+    }
+
+    .templatemo-item {
+        width: 100px;
+        height: auto;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .button-group .main-border-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-button a {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .heading-section h4 {
+        font-size: 22px;
+    }
+}
+
+
     </style>
         
     @endsection

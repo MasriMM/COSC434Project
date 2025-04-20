@@ -3,7 +3,7 @@
 ===================*/
 
 :root {
-  --paragraph-color: #707070;
+  --paragraph-color: #ffffff;
   --main-color: #C53423;
   --title-color: #252525;
 }
@@ -1642,7 +1642,7 @@ Contact-Page
 .contact-section .left-content .separetor span{
 	width: 100%;
 	height: 1px;
-	background-color: #70707066;
+	background-color: #ffffff66;
 	display: block;
 }
 .contact-section .right-content{

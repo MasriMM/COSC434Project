@@ -23,28 +23,222 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-                font-family: 'Roboto', sans-serif;
+                font-family: 'Inter', sans-serif;
             }
-            
+            .checkbox-wrapper-56 .container input:focus,
+.checkbox-wrapper-56 .container input:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.checkbox-wrapper-56 .container input:checked {
+    background-color: #1a1a1a;
+    border-color: #e31515;
+    appearance: none; /* For cross-browser uniformity */
+}
+
+
+
+            body {
+                background: linear-gradient(135deg, #0e0e0e, #1a0000, #330000);
+                background-size: 200% 200%;
+                animation: gradientShift 15s ease infinite;
+                color: #fff;
+            }
+
+            @keyframes gradientShift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            .class-details-section {
+                padding: 60px 0;
+            }
+            .right-content {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 0 0 60px rgba(255, 255, 255, 0.15);
+    padding: 33px 30px;
+    border-radius: 20px;
+    background-color: #1a1a1a; /* optional for better contrast */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+            .left-content{
+                background-color: #1a1a1a;
+                padding: 20px;
+                border-radius: 12px;
+                position: relative;
+                z-index: 1;
+                box-shadow:
+                    0 0 20px rgba(255, 255, 255, 0.2),
+                    0 0 40px rgba(255, 255, 255, 0.15),
+                    0 0 60px rgba(255, 255, 255, 0.1);
+                margin-bottom: 30px;
+                transition: box-shadow 0.3s ease;
+            }
+
+            .class-image {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                margin-bottom: 20px;
+                border: 2px solid #e31515;
+            }
+
+            .class-meta .item {
+                display: inline-block;
+                margin-right: 15px;
+                color: #fff;
+            }
+
+            .class-meta .heading {
+                color: #e31515;
+                font-weight: 600;
+            }
+
+            .main-separetor {
+                height: 2px;
+                background-color: #e31515;
+                margin: 30px 0;
+            }
+
+            .title {
+                color: #e31515;
+                font-weight: 700;
+                margin-bottom: 15px;
+            }
+
+            .discription {
+                color: #ccc;
+                line-height: 1.6;
+            }
+
+            blockquote {
+                color: #e0e0e0;
+                font-style: italic;
+                border-left: 4px solid #e31515;
+                padding-left: 15px;
+            }
+
+            .text-img img {
+                width: 100%;
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+
+            /* Table Styling */
+            .table {
+                width: 100%;
+                margin-top: 20px;
+                background-color: #181818;
+                color: #fff;
+                border-collapse: separate;
+                border-spacing: 0;
+                border: 1px solid #e31515;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .table thead {
+                background-color: #2a2a2a;
+                border-bottom: 2px solid #e31515;
+            }
+
+            .table thead th {
+                color: #e31515;
+                font-weight: 600;
+                padding: 12px;
+                text-align: center;
+                border-right: 1px solid #333;
+            }
+
+            .table thead th:last-child {
+                border-right: none;
+            }
+
+            .table tbody tr {
+                transition: background-color 0.3s ease;
+            }
+
+            .table tbody tr:hover {
+                background-color: rgba(227, 21, 21, 0.1);
+            }
+
+            .table tbody td {
+                padding: 10px 15px;
+                
+                text-align: center;
+                vertical-align: middle;
+                font-size: 14px;
+                color: #000000;
+            }
+
+            .table img {
+                border-radius: 8px;
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+            }
+
+            /* 3D Card Effects */
             .card {
                 position: relative;
                 width: 250px;
                 height: 300px;
-                background: linear-gradient(0deg, #1b1b1b, #222, #1b1b1b);
-                border: 2px solid red;
-                border-radius: 4px;
+                background: linear-gradient(145deg, #1a1a1a, #111);
+                border: 2px solid white;
+                border-radius: 16px;
                 text-align: center;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
-                transition: 0.5s;
                 margin: auto;
+                transition: all 0.5s ease-in-out;
+                transform-style: preserve-3d;
+                perspective: 1000px;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+                animation: cardFadeIn 0.5s ease;
             }
+
             .card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 0 15px red, 0 0 25px red;
+                transform: rotateY(5deg) rotateX(5deg) scale(1.05);
+                box-shadow: 0 0 25px #e31515, 0 0 35px #e31515;
+                border: 2px solid #e31515;
             }
+
+            .card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -50%;
+                width: 200%;
+                height: 100%;
+                background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+                transform: skewX(-20deg);
+                pointer-events: none;
+            }
+
+            .card:hover::after {
+                content: '';
+                position: absolute;
+                width: 120%;
+                height: 120%;
+                background: radial-gradient(circle, rgba(227,21,21,0.25) 0%, transparent 80%);
+                animation: pulseGlow 1.5s infinite;
+                z-index: 0;
+                border-radius: 50%;
+            }
+
+            @keyframes cardFadeIn {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes pulseGlow {
+                0% { transform: scale(0.9); opacity: 0.6; }
+                50% { transform: scale(1.1); opacity: 0.2; }
+                100% { transform: scale(0.9); opacity: 0.6; }
+            }
+
             .percent {
                 position: relative;
                 width: 150px;
@@ -53,6 +247,7 @@
                 box-shadow: inset 0 0 50px #000;
                 background: #222;
             }
+
             .percent .num {
                 position: absolute;
                 top: 0;
@@ -63,41 +258,48 @@
                 justify-content: center;
                 align-items: center;
             }
+
             .percent .num h2 {
                 color: #777;
                 font-weight: 700;
                 font-size: 40px;
                 transition: 0.5s;
             }
+
             .card:hover .percent .num h2 {
                 color: #fff;
                 font-size: 60px;
             }
+
             .percent .num h2 span {
                 color: #777;
                 font-size: 24px;
                 transition: 0.5s;
             }
+
             .card:hover .percent .num h2 span {
                 color: #fff;
             }
+
             .text {
-                color: #777;
+                color: #000000;
                 margin-top: 20px;
                 font-weight: 700;
                 font-size: 18px;
                 text-transform: uppercase;
                 transition: 0.5s;
             }
+
             .card:hover .text {
                 color: #fff;
-                
             }
+
             svg {
                 position: relative;
                 width: 150px;
                 height: 150px;
             }
+
             svg circle {
                 fill: none;
                 stroke: #191919;
@@ -105,71 +307,51 @@
                 stroke-linecap: round;
                 transform: translate(5px, 5px);
             }
+
             svg circle:nth-child(2) {
                 stroke: #ff0000;
                 stroke-dasharray: 440;
                 stroke-dashoffset: 440;
                 transition: stroke-dashoffset 0.5s;
             }
-    .checkbox-wrapper-56 *,
-    .checkbox-wrapper-56 ::after,
-    .checkbox-wrapper-56 ::before {
-      box-sizing: border-box;
-    }
-    
-    .checkbox-wrapper-56 .container input {
-      opacity: 1;
-      -webkit-appearance: none;
-      cursor: pointer;
-      height: 50px;
-      width: 50px;
-      box-shadow: -10px -10px 15px rgba(255,255,255,0.5),
-      10px 10px 15px rgba(0,0,70,0.12);
-      border-radius: 50%;
-      border: 8px solid #ececec;
-      outline: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: .5s;
-    }
-    
-    
-    .checkbox-wrapper-56 .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .checkbox-wrapper-56 .container input::after {
-      transition: .5s;
-      font-family: monospace;
-      content: '';
-      color: #7a7a7a;
-      font-size: 25px;
-      left: 0.45em;
-      top: 0.25em;
-      width: 0.25em;
-      height: 0.5em;
-      border: solid #7a7a7a;
-      border-width: 0 0.15em 0.15em 0;
-      transform: rotate(45deg);
-    }
-    
-    .checkbox-wrapper-56 .container input:checked {
-      box-shadow: -10px -10px 15px rgba(255,255,255,0.5),
-      10px 10px 15px rgba(70,70,70,0.12),
-      inset -10px -10px 15px rgba(255,255,255,0.5),
-      inset 10px 10px 15px rgba(70,70,70,0.12);
-      transition: .5s;
-    }
-    
-    .checkbox-wrapper-56 .container input:checked::after {
-      transition: .5s;
-      border: solid #e31515;
-      border-width: 0 0.15em 0.15em 0;
-      transform: rotate(45deg);
-    }
+
+            /* Checkbox */
+            .checkbox-wrapper-56 .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .checkbox-wrapper-56 .container input {
+                opacity: 1;
+                -webkit-appearance: none;
+                cursor: pointer;
+                height: 50px;
+                width: 50px;
+                background: #1a1a1a;
+                border: 4px solid #e31515;
+                border-radius: 50%;
+                transition: .5s;
+                box-shadow: inset 0 0 10px #000;
+            }
+
+            .checkbox-wrapper-56 .container input:checked {
+                box-shadow: 0 0 10px #e31515, inset 0 0 10px #e31515;
+            }
+
+            .col-lg-4 .right-content {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 0 0 60px rgba(255, 255, 255, 0.15);
+    padding: 33px 30px;
+    border-radius: 20px;
+    background-color: #1a1a1a; /* Optional for better contrast */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+            .checkbox-wrapper-56 .container input:checked::after {
+                border-color: #e31515;
+            }
+        </style>
     </style>
     @endsection
 
@@ -181,11 +363,11 @@
                     <div class="left-content">
                         <img class="class-image" src="{{ asset('storage/' . $program->img) }}" alt="{{ $program->name }}">
                         <div class="class-meta">
-                            <div class="item"><span class="heading">Level:</span><span class="data">{{ ucfirst($program->level) }}</span></div>
+                            <div class="item"><span class="heading">Level:</span><span class="data" style="color: white">{{ ucfirst($program->level) }}</span></div>
                             <span class="separetor"></span>
-                            <div class="item"><span class="heading">Duration:</span><span class="data">{{ $program->duration }} mins</span></div>
+                            <div class="item"><span class="heading">Duration:</span><span class="data" style="color: white">{{ $program->duration }} mins</span></div>
                             <span class="separetor"></span>
-                            <div class="item"><span class="heading">Sets:</span><span class="data">{{ $program->sets }} sets/exercise</span></div>
+                            <div class="item"><span class="heading">Sets:</span><span class="data" style="color: white">{{ $program->sets }} sets/exercise</span></div>
                         </div>
 
                         <div class="main-separetor"></div>
@@ -220,7 +402,7 @@
                         </table>
 
                         <div class="text-box mt-4">
-                            <blockquote style="border-left: 4px solid #e31515; padding-left: 15px;">"Success usually comes to those who are too busy to be looking for it."</blockquote>
+                            <blockquote style="border-left: 4px solid #e31515; padding-left: 15px; color: rgb(0, 0, 0);">"Success usually comes to those who are too busy to be looking for it."</blockquote>
                             <p class="mt-2">— Henry David Thoreau</p>
                             <div class="text-img mt-3">
                                 <img src="{{ asset('imgs/class-details-bg.png') }}" alt="images">
@@ -249,7 +431,7 @@
                                         <h2 id="percentNumber">0<span>%</span></h2>
                                     </div>
                                 </div>
-                                <h2 class="text">Progress</h2>
+                                <h2 class="text" style="color: white">Progress</h2>
                             </div>
                         </div>
                     </div>

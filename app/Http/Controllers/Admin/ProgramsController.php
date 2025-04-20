@@ -16,10 +16,12 @@ class ProgramsController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $programs = Program::all();
-        return view('admin.programs.index', compact('programs'));
-    }
+{
+    // Show only admin-created programs
+    $programs = Program::where('is_public', true)->get();
+
+    return view('admin.programs.index', compact('programs'));
+}
 
     /**
      * Show the form for creating a new resource.

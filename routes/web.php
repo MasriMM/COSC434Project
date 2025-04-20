@@ -72,3 +72,9 @@ Route::resource('program', ProgramController::class);
 Route::post('/orders/update-status', [OrdersController::class, 'updateStatus'])->name('orders.updateStatus');
 Route::delete('/orders/{order}', [OrdersController::class, 'destroy'])->name('orders.destroy');
 Route::post('/admin/messages', [MessagesController::class, 'store'])->name('messages.store');
+
+
+Route::get('/programs', [ProgramController::class, 'index'])->name('program.index');
+
+
+Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');

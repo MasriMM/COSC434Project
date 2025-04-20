@@ -6,7 +6,7 @@
 <div class="max-w-4xl mx-auto bg-zinc-900 p-8 rounded-lg border border-zinc-700 shadow text-white focus:ring-1 focus:ring-red-500 focus:border-red-500">
     <h1 class="text-3xl font-semibold text-white mb-6">Create New Program</h1>
 
-    <form action="{{ route('programs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="{{ route('program.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
 
         <!-- Program Image -->
