@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Message;
+use Illuminate\Support\Facades\Auth;
 
 class MessagesController extends Controller
 {
@@ -46,6 +47,9 @@ class MessagesController extends Controller
         $message->email = $validated['email'];
         $message->subject = $validated['subject'];
         $message->content = $validated['message'];
+        if (Auth::check()) {
+            $message->user_id = Auth::id();
+        }
         $message->save();
 
         session()->flash('success', 'Your message has been sent successfully!');
