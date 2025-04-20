@@ -361,7 +361,7 @@
                 <!-- Left Section -->
                 <div class="col-lg-8">
                     <div class="left-content">
-                        <img class="class-image" src="{{ asset('storage/' . $program->img) }}" alt="{{ $program->name }}">
+                        <img class="class-image" src="{{ asset($program->img) }}" alt="{{ $program->name }}">
                         <div class="class-meta">
                             <div class="item"><span class="heading">Level:</span><span class="data" style="color: white">{{ ucfirst($program->level) }}</span></div>
                             <span class="separetor"></span>

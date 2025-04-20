@@ -171,7 +171,7 @@
                                 </form>
                             </div>
                         </div>
-                        <img src="{{ asset($program->img ?? 'assets/images/popular-01.jpg') }}" alt="{{ $program->name }}">
+                        <img src="{{ asset($program->img) }}" alt="{{ $program->name }}">
                         <h4 class="game-title">{{ $program->name }}</h4>
                         <p class="game-desc">{{ Str::limit($program->description, 80) }}</p>
                     </div>
