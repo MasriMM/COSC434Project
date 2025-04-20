@@ -36,7 +36,7 @@ class OrdersController extends Controller
         }
 
         // Fetch orders with pagination to avoid loading too many at once
-        $orders = $query->paginate(10)->appends($request->all()); // Ensure filters stay applied during pagination
+        $orders = $query->paginate(100)->appends($request->all()); // Ensure filters stay applied during pagination
 
         return view('admin.orders.index', compact('orders'));
     }

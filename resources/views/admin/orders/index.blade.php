@@ -10,8 +10,8 @@
                 
                 <!-- Sorting filter -->
                 <select name="sort" class="px-4 py-2 rounded-md bg-zinc-800 text-white border border-zinc-600">
-                    <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
-                    <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>Latest</option>
+                <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest First</option>
+                <option value="oldest" {{ request('sort') == 'oldest' ? 'selected' : '' }}>Oldest First</option>
                 </select>
 
                 <button type="submit" class="px-4 py-2 rounded-md bg-red-600 text-white">Apply</button>
@@ -35,7 +35,7 @@
                     @foreach($orders as $order)
                         <tr class="hover:bg-zinc-800 transition" data-id="{{ $order->id }}">
                             <td class="px-4 py-2 font-semibold text-white">{{ $order->id }}</td>
-                            <td class="px-4 py-2">{{ $order->user->name }}</td>
+                            <td class="px-4 py-2">{{ $order->user->name ?? 'N/A' }}</td>
                             <td class="px-4 py-2">${{ number_format($order->total_price, 2) }}</td>
                             <td class="px-4 py-2">
                                 <select class="status-dropdown bg-zinc-800 text-white border border-zinc-600 rounded p-1" data-order-id="{{ $order->id }}">

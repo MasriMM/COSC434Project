@@ -50,7 +50,7 @@ class AdminSupplementController extends Controller
                 'stock'       => 'required|integer',
                 'description' => 'nullable|string', // Added description validation
                 'category_id' => 'required|exists:categories,id',
-                'image'       => 'nullable|image|max:2048',
+                'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             \Log::info('Request data: ' . json_encode($request->all()));
@@ -64,7 +64,7 @@ class AdminSupplementController extends Controller
                 // Set the image path to be stored in the database
                 $data['image'] = '/storage/' . $imagePath;  // Correct path to access the public storage
             } else {
-                $data['image'] = '/imgs/default.png';  // If no image is uploaded, use a default image
+                $data['image'] = '/imgs/EnergyCitrus.png';  // If no image is uploaded, use a default image
             }
 
             if ($request->input('id')) {
