@@ -91,20 +91,19 @@
     <!-- Mobile menu -->
     <div class="sm:hidden" x-show="open" x-transition>
         <div class="space-y-1 px-2 pt-2 pb-3">
-            <a href="/home" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
-            <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">About Us</a>
-            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Programs</a>
-            <a href="/supplements" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Shop</a>
-            <a href="/contact-us" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact Us</a>
-            <a href="{{ route('programs.create') }}" class="block bg-blue-600 text-white px-3 py-2 rounded-md">Add New Program</a>
+            <a href="/home" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-red-600 transition-colors duration-300">Home</a>
+            <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">About Us</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Programs</a>
+            <a href="/supplements" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Shop</a>
+            <a href="/contact-us" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Contact Us</a>
             @auth
                 @if(auth()->user()->role === 'admin')
-                    <a href="{{ route('admin.users.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600">Dashboard</a>
+                    <a href="{{ route('admin.users.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300">Dashboard</a>
                 @endif
-                <a href="{{ route('profile.edit') }}" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Profile</a>
+                <a href="{{ route('profile.edit') }}" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Profile</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                    <button class="w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700"
                             onclick="event.preventDefault(); this.closest('form').submit();">
                         Log Out
                     </button>

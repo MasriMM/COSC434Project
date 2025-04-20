@@ -49,16 +49,13 @@ Route::resource('supplements', SupplementController::class);
 
 
 //route for admin nav
-Route::prefix('Admin')->name('admin.')->middleware(['auth'])->group(function () {
-    // Full CRUD routes
+Route::prefix('Admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('orders', OrdersController::class);
     Route::resource('supplements', AdminSupplementController::class);
     Route::resource('programs', ProgramsController::class);
     Route::resource('exercises', ExercisesController::class);
-    
 
-    // Index-only routes
     Route::get('messages', [MessagesController::class, 'index'])->name('messages.index');
     Route::get('statistics', [StatisticsController::class, 'index'])->name('statistics.index');
 });

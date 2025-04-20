@@ -24,15 +24,25 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-        
-        if (auth()->user()->role === 'admin') {
-            return redirect()->intended(route('admin.users.index', absolute: false));
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ]);
+    
+        if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+            return back()->withErrors([
+                'email' => trans('auth.failed'),
+            ]);
         }
     
-        return redirect()->route('home');
+        $request->session()->regenerate();
+    
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.users.index');
+        }
+    
+        return redirect()->intended('/home');
     }
 
     /**

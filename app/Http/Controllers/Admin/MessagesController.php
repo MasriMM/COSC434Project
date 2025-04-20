@@ -13,7 +13,7 @@ class MessagesController extends Controller
      */
     public function index(Request $request)
     {
-        $sortOrder = $request->input('sort', 'desc'); // default: newest
+        $sortOrder = $request->input('sort', 'desc'); 
         $messages = \App\Models\Message::orderBy('created_at', $sortOrder)->get();
         return view('admin.messages.index', compact('messages', 'sortOrder'));
     }

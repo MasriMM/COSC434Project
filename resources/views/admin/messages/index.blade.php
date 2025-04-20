@@ -1,10 +1,11 @@
 <x-app-layout>
 <div class="min-h-screen flex items-center justify-center bg-zinc-950 px-4">
     <div class="max-w-7xl w-full">
-        <div class="flex justify-end mb-6 pr-8">
-            <form method="GET" action="{{ route('admin.messages.index') }}">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-10 my-4">
+            <h1 class="text-3xl font-bold text-white">Users' Messages</h1>
+            <form method="GET" action="{{ route('admin.messages.index') }}" class="flex items-center">
                 <label for="sort" class="text-white text-sm mr-2">Sort by:</label>
-                <select name="sort" id="sort" onchange="this.form.submit()" class="bg-zinc-800 text-white border border-rose-400 rounded px-3 py-1 pr-8">
+                <select name="sort" id="sort" onchange="this.form.submit()" class="bg-zinc-800 text-white border border-rose-400 focus:border-rose-500 focus:ring-rose-500 rounded px-3 py-1 pr-8">
                     <option value="desc" {{ $sortOrder === 'desc' ? 'selected' : '' }}>Newest First</option>
                     <option value="asc" {{ $sortOrder === 'asc' ? 'selected' : '' }}>Oldest First</option>
                 </select>
