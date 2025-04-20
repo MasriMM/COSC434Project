@@ -14,7 +14,7 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        //
+        return view('program.index');
     }
 
     /**

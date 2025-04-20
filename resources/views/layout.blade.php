@@ -38,7 +38,7 @@
                     <div class="flex space-x-4">
                         <a href="/home" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Home</a>
                         <a href="/about" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">About Us</a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Programs</a>
+                        <a href="{{ route('program.index') }}" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Programs</a>
                         <a href="/supplements" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Shop</a>
                         <a href="/contact-us" class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-red-600 transition">Contact Us</a>
                         @auth
@@ -93,7 +93,7 @@
         <div class="space-y-1 px-2 pt-2 pb-3">
             <a href="/home" class="block px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-red-600 transition-colors duration-300">Home</a>
             <a href="/about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">About Us</a>
-            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Programs</a>
+            <a href="{{ route('program.index') }}" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Programs</a>
             <a href="/supplements" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Shop</a>
             <a href="/contact-us" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-red-600 transition-colors duration-300 hover:bg-gray-700">Contact Us</a>
             @auth
@@ -155,7 +155,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#how-it-works" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
+                    <a href="{{ route('program.index') }}" class="text-gray-300 hover:text-red-600 transition-colors duration-300">
                         Programs
                     </a>
                 </li>

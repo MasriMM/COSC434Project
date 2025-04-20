@@ -12,10 +12,10 @@ use App\Http\Controllers\Admin\ExercisesController;
 use App\Http\Controllers\Admin\MessagesController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\SupplementController;
-use App\Http\ProgramController;
+use App\Http\Controllers\ProgramController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -67,7 +67,7 @@ Route::get('/get-supplements', [SupplementController::class, 'getSupplements'])-
 Route::get('/checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
 
-Route::resource('programs', App\Http\ProgramController::class);
+Route::resource('program', ProgramController::class);
 
 Route::post('/orders/update-status', [OrdersController::class, 'updateStatus'])->name('orders.updateStatus');
 Route::delete('/orders/{order}', [OrdersController::class, 'destroy'])->name('orders.destroy');
