@@ -29,7 +29,7 @@
 
                             <h6 data-aos="fade-up" data-aos-delay="300">A fresh approach to achieving a healthier, stronger you!</h6>
 
-                            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">with FitForg once you see rseults it becomes an addiction</h1>
+                            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">with FitForge once you see rseults it becomes an addiction</h1>
 
                             <a href="#feature" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="600">Get started</a>
 
@@ -48,7 +48,7 @@
     <div class="row">
 
         <div class="d-flex flex-column justify-content-center ml-lg-auto mr-lg-5 col-lg-5 col-md-6 col-12">
-            <h2 class="mb-3 text-white" data-aos="fade-up">New to the FitFog?</h2>
+            <h2 class="mb-3 text-white" data-aos="fade-up">New to the FitForge?</h2>
 
 
         </div>
@@ -92,19 +92,19 @@
       <div class="col-md-4">
         <div class="icon-box wow fadeInUp" data-wow-delay="0.2s"> <i class="fa fa-heartbeat" aria-hidden="true"></i>
           <h5>Services </h5>
-          <p>Explore personal training and custom workout plans for all fitness levels.</p>
+          <p>Explore workout programs for all fitness levels.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="icon-box wow fadeInUp" data-wow-delay="0.4s"> <i class="fa fa-users" aria-hidden="true"></i>
-          <h5>Schedule a Session</h5>
-          <p>Book your training sessions at your convenience.</p>
+          <h5>Features</h5>
+          <p>Customize your own program that suits your need.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="icon-box wow fadeInUp" data-wow-delay="0.6s"> <i class="fa fa-bolt" aria-hidden="true"></i>
-          <h5>Pricing & Packages</h5>
-          <p>Choose a flexible plan that fits your budget and goals.
+          <h5>Shopping</h5>
+          <p>Purchase gym supplements to support your journey and healthy lifestyle.
           </p>
         </div>
       </div>
