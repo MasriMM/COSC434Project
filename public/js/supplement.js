@@ -127,3 +127,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCartDisplay();
 });
+document.addEventListener("DOMContentLoaded", function () {
+    var swiper = new Swiper(".mySwiper", {
+        loop: true, // Enables infinite scrolling
+        autoplay: {
+            delay: 3000, // Auto-slide every 3 seconds
+            disableOnInteraction: false, // Keeps autoplay active after user interaction
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        slidesPerView: 1,
+        spaceBetween: 10,
+        effect: "fade", // Smooth fade transition between slides
+    });
+});
